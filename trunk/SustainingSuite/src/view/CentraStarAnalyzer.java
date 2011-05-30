@@ -15,7 +15,7 @@ import java.awt.*;
 public class CentraStarAnalyzer extends JFrame {
     public static CentraStarAnalyzer link;
     JPanel menuPanel = new MenuPanel();
-    JPanel mainPnale = new JPanel();
+    JPanel mainPanel = new JPanel();
 
     public CentraStarAnalyzer() throws HeadlessException {
         super("CentraStarAnalyzer");
@@ -24,7 +24,7 @@ public class CentraStarAnalyzer extends JFrame {
         setSize(600, 400);
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         getContentPane().add(menuPanel);
-        getContentPane().add(mainPnale);
+        getContentPane().add(mainPanel);
         setVisible(true);
         link = this;
     }
