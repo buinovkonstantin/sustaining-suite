@@ -1,6 +1,9 @@
 package view;
 
-import view.menu.MenuPanel;
+import view.menu.analyze.AnalyzeMenu;
+import view.menu.cluster.ClusterMenu;
+import view.menu.help.HelpMenu;
+import view.menu.logging.LoggingMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,17 +17,22 @@ import java.awt.*;
  */
 public class CentraStarAnalyzer extends JFrame {
     public static CentraStarAnalyzer link;
-    JPanel menuPanel = new MenuPanel();
-    JPanel mainPanel = new JPanel();
 
     public CentraStarAnalyzer() throws HeadlessException {
         super("CentraStarAnalyzer");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(300, 300));
         setSize(600, 400);
-        setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-        getContentPane().add(menuPanel);
-        getContentPane().add(mainPanel);
+        JMenuBar menuBar = new JMenuBar();
+        ClusterMenu clusterMenu = new ClusterMenu();
+        LoggingMenu loggingMenu = new LoggingMenu();
+        AnalyzeMenu analyzeMenu = new AnalyzeMenu();
+        HelpMenu helpMenu = new HelpMenu();
+        menuBar.add(clusterMenu);
+        menuBar.add(loggingMenu);
+        menuBar.add(analyzeMenu);
+        menuBar.add(helpMenu);
+        setJMenuBar(menuBar);
         setLocationRelativeTo(null);
         setVisible(true);
         link = this;

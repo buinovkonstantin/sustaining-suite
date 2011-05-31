@@ -1,5 +1,8 @@
 package view.menu.cluster;
 
+import com.jgoodies.forms.builder.PanelBuilder;
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
 import view.CentraStarAnalyzer;
 import javax.swing.*;
 import java.awt.*;
@@ -12,30 +15,35 @@ import java.awt.*;
  * To change this template use File | Settings | File Templates.
  */
 public class ExitDialog extends JDialog {
+
+    private JCheckBox serverModuleBox;
+    private JCheckBox sessionContextBox;
+    private JLabel disconnectInfoLabel;
+    private JButton yesButton;
+    private JButton noButtom;
+
     public ExitDialog() {
-       super(CentraStarAnalyzer.link, "Disconnect from cluster", true);
+        super(CentraStarAnalyzer.link, "Disconnect from cluster", true);
+        disconnectInfoLabel = new JLabel("Are you want to disconnect from cluster?");
+        serverModuleBox = new JCheckBox("stop server module");
+        sessionContextBox = new JCheckBox("remove session context");
+        yesButton = new JButton("Yes");
+        noButtom = new JButton("No");
+        setTitle("Disconnect from cluster");
+        setModal(true);
 
-//        setTitle("Disconnect from cluster");
-//        setModal(true);
-
-        setMinimumSize(new Dimension(300, 150));
-        JPanel panel = new JPanel();
-        JPanel buttonPanel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
-        JCheckBox serverModuleBox = new JCheckBox("stop server module");
-        JCheckBox sessionContextBox = new JCheckBox("remove session context");
-        panel.add(new JLabel("Are you want to disconnect"));
-        panel.add(new JLabel(" from cluster?")); //no time to investigate of JLAbel newline
-        panel.add(serverModuleBox);
-        panel.add(sessionContextBox);
-        buttonPanel.add(Box.createHorizontalGlue());
-        buttonPanel.add(new JButton("Yes"));
-        buttonPanel.add(Box.createHorizontalGlue());
-        buttonPanel.add(new JButton("No"));
-        buttonPanel.add(Box.createHorizontalGlue());
-        panel.add(buttonPanel);
-        panel.add(Box.createVerticalGlue());
-        getContentPane().add(panel);
+        FormLayout formLayout = new FormLayout("70dlu, 70dlu", "20dlu, 20dlu, 20dlu, 20dlu");
+        CellConstraints c = new CellConstraints();
+        PanelBuilder builder = new PanelBuilder(formLayout);
+        builder.setDefaultDialogBorder();
+        builder.add(disconnectInfoLabel, c.xyw(1, 1, 2));
+        builder.add(serverModuleBox, c.xyw(1, 2, 2));
+        builder.add(sessionContextBox, c.xyw(1, 3, 2));
+        builder.add(yesButton, c.xy(1, 4, "center,center"));
+        builder.add(noButtom, c.xy(2, 4, "center,center"));
+        add(builder.getPanel());
+        pack();
+        setSize(getSize());
+        setResizable(false);
     }
 }

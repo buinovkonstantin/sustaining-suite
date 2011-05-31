@@ -1,5 +1,8 @@
 package view.menu.cluster;
 
+import com.jgoodies.forms.builder.PanelBuilder;
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
 import view.CentraStarAnalyzer;
 
 import javax.swing.*;
@@ -19,14 +22,14 @@ public class SessionsDialog extends JDialog {
     private JButton cancelButton;
     private JButton removeButton;
     private JButton resumeButton;
+    private JLabel existingSessionsLabel;
+    private SessionsTable sessionsTable;
 
     public SessionsDialog() {
         super(CentraStarAnalyzer.link, "Sessions", false);
-        setMinimumSize(new Dimension(500, 300));
-        JPanel panel = new JPanel();
-        JPanel labelPanel = new JPanel();
-        JPanel tablePanel = new JPanel();
-        JPanel buttonPanel = new JPanel();
+        existingSessionsLabel = new JLabel("Existing sessions");
+        sessionsTable = new SessionsTable();
+        sessionsTable.setFillsViewportHeight(true);
         resumeButton = new JButton("Resume");
         removeButton = new JButton("Remove");
         cancelButton = new JButton("Cancel");
@@ -35,24 +38,19 @@ public class SessionsDialog extends JDialog {
                 SessionsDialog.this.dispose();
             }
         });
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        labelPanel.setLayout(new BoxLayout(labelPanel, BoxLayout.X_AXIS));
-        //labelPanel.add(Box.createHorizontalStrut(30));
-        labelPanel.add(new JLabel("Existing sessions"));
-        labelPanel.add(Box.createHorizontalGlue());
-        tablePanel.setLayout(new BoxLayout(tablePanel, BoxLayout.Y_AXIS));
-        SessionsTable sessionsTable = new SessionsTable();
-        sessionsTable.setFillsViewportHeight(true);
-        tablePanel.add(sessionsTable.getTableHeader());
-        tablePanel.add(sessionsTable);
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
-        buttonPanel.add(resumeButton);
-        buttonPanel.add(removeButton);
-        buttonPanel.add(Box.createHorizontalGlue());
-        buttonPanel.add(cancelButton);
-        panel.add(labelPanel);
-        panel.add(new JScrollPane(tablePanel));
-        panel.add(buttonPanel);
-        getContentPane().add(panel);
+
+        FormLayout formLayout = new FormLayout("left:50dlu, left:50dlu, 50dlu:grow(1), right:50dlu", "10dlu, 10dlu, top:80dlu:grow(1), 20dlu");
+        CellConstraints c = new CellConstraints();
+        PanelBuilder builder = new PanelBuilder(formLayout);
+        builder.setDefaultDialogBorder();
+        builder.add(existingSessionsLabel, c.xyw(1,1,3));
+        builder.add(sessionsTable.getTableHeader(), c.xyw(1,2,4));
+        builder.add(new JScrollPane(sessionsTable, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), c.xyw(1, 3, 4));
+        builder.add(resumeButton, c.xy(1,4));
+        builder.add(removeButton, c.xy(2,4));
+        builder.add(cancelButton, c.xy(4,4));
+        add(builder.getPanel());
+        pack();
+        setMinimumSize(getSize());
     }
 }
