@@ -88,6 +88,7 @@ public class ConnectDialog extends JFrame {
         pack();
         setMinimumSize(getSize());
         setMaximumSize(getSize());
+        setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
     }

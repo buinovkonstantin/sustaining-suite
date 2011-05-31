@@ -106,6 +106,7 @@ public class ClusterConnectionInfoDialog extends JDialog {
 
         add(builder.getPanel());
         pack();
+        setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
     }

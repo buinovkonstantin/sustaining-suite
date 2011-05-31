@@ -25,6 +25,7 @@ public class CentraStarAnalyzer extends JFrame {
         setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
         getContentPane().add(menuPanel);
         getContentPane().add(mainPanel);
+        setLocationRelativeTo(null);
         setVisible(true);
         link = this;
     }

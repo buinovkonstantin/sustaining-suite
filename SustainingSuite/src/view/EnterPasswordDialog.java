@@ -50,6 +50,7 @@ public class EnterPasswordDialog extends JDialog {
 
         add(builder.getPanel());
         pack();
+        setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
     }
