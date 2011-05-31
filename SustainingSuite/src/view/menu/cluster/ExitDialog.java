@@ -5,7 +5,6 @@ import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import view.CentraStarAnalyzer;
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -20,7 +19,7 @@ public class ExitDialog extends JDialog {
     private JCheckBox sessionContextBox;
     private JLabel disconnectInfoLabel;
     private JButton yesButton;
-    private JButton noButtom;
+    private JButton noButton;
 
     public ExitDialog() {
         super(CentraStarAnalyzer.link, "Disconnect from cluster", true);
@@ -28,7 +27,7 @@ public class ExitDialog extends JDialog {
         serverModuleBox = new JCheckBox("stop server module");
         sessionContextBox = new JCheckBox("remove session context");
         yesButton = new JButton("Yes");
-        noButtom = new JButton("No");
+        noButton = new JButton("No");
         setTitle("Disconnect from cluster");
         setModal(true);
 
@@ -40,7 +39,7 @@ public class ExitDialog extends JDialog {
         builder.add(serverModuleBox, c.xyw(1, 2, 2));
         builder.add(sessionContextBox, c.xyw(1, 3, 2));
         builder.add(yesButton, c.xy(1, 4, "center,center"));
-        builder.add(noButtom, c.xy(2, 4, "center,center"));
+        builder.add(noButton, c.xy(2, 4, "center,center"));
         add(builder.getPanel());
         pack();
         setSize(getSize());
