@@ -1,6 +1,10 @@
 package view.menu.logging;
 
+import view.menu.logging.dialog.DownloadDialog;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by IntelliJ IDEA.
@@ -12,5 +16,10 @@ import javax.swing.*;
 public class DownloadMenu extends JMenuItem {
     public DownloadMenu() {
         super("Download");
+        addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new DownloadDialog();
+            }
+        });
     }
 }

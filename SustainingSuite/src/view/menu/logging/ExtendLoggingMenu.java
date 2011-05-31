@@ -1,6 +1,10 @@
 package view.menu.logging;
 
+import view.menu.logging.dialog.ExtendLoggingDialog;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by IntelliJ IDEA.
@@ -12,5 +16,10 @@ import javax.swing.*;
 public class ExtendLoggingMenu extends JMenuItem {
     public ExtendLoggingMenu() {
         super("Extend Logging");
+        addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ExtendLoggingDialog();
+            }
+        });
     }
 }

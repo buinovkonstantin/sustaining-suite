@@ -1,5 +1,7 @@
 package view.menu.cluster;
 
+import view.menu.cluster.dialog.SessionsDialog;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

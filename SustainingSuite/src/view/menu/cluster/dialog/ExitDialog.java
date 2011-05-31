@@ -1,4 +1,4 @@
-package view.menu.cluster;
+package view.menu.cluster.dialog;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
@@ -31,18 +31,19 @@ public class ExitDialog extends JDialog {
         setTitle("Disconnect from cluster");
         setModal(true);
 
-        FormLayout formLayout = new FormLayout("70dlu, 70dlu", "20dlu, 20dlu, 20dlu, 20dlu");
+        FormLayout formLayout = new FormLayout("60dlu, 10dlu, 60dlu", "20dlu, 20dlu, 20dlu, 20dlu");
         CellConstraints c = new CellConstraints();
         PanelBuilder builder = new PanelBuilder(formLayout);
         builder.setDefaultDialogBorder();
-        builder.add(disconnectInfoLabel, c.xyw(1, 1, 2));
-        builder.add(serverModuleBox, c.xyw(1, 2, 2));
-        builder.add(sessionContextBox, c.xyw(1, 3, 2));
-        builder.add(yesButton, c.xy(1, 4, "center,center"));
-        builder.add(noButton, c.xy(2, 4, "center,center"));
+        builder.add(disconnectInfoLabel, c.xyw(1, 1, 3));
+        builder.add(serverModuleBox, c.xyw(1, 2, 3));
+        builder.add(sessionContextBox, c.xyw(1, 3, 3));
+        builder.add(yesButton, c.xy(1, 4, "default,center"));
+        builder.add(noButton, c.xy(3, 4, "default,center"));
         add(builder.getPanel());
         pack();
         setSize(getSize());
         setResizable(false);
+        setLocationRelativeTo(null);
     }
 }

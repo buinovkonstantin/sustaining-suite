@@ -1,12 +1,12 @@
-package view.menu.cluster;
+package view.menu.cluster.dialog;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import view.CentraStarAnalyzer;
+import view.menu.cluster.SessionsTable;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -51,6 +51,7 @@ public class SessionsDialog extends JDialog {
         builder.add(cancelButton, c.xy(4,4));
         add(builder.getPanel());
         pack();
+        setLocationRelativeTo(null);
         setMinimumSize(getSize());
     }
 }
