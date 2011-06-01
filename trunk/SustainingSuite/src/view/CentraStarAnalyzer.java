@@ -17,7 +17,7 @@ import java.awt.*;
  */
 public class CentraStarAnalyzer extends JFrame {
     public static CentraStarAnalyzer link;
-
+    private JDesktopPane desktop;
     public CentraStarAnalyzer() throws HeadlessException {
         super("CentraStarAnalyzer");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -33,6 +33,9 @@ public class CentraStarAnalyzer extends JFrame {
         menuBar.add(analyzeMenu);
         menuBar.add(helpMenu);
         setJMenuBar(menuBar);
+        desktop = new JDesktopPane();
+        desktop.setDragMode(JDesktopPane.DRAG_LAYER);
+        setContentPane(desktop);
         setLocationRelativeTo(null);
         setVisible(true);
         link = this;

@@ -32,6 +32,12 @@ public class SessionsDialog extends JDialog {
         sessionsTable.setFillsViewportHeight(true);
         resumeButton = new JButton("Resume");
         removeButton = new JButton("Remove");
+        removeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Object[] options = {"Yes", "No"};
+                JOptionPane.showOptionDialog(SessionsDialog.this, "Are you sure to remove session context from cluster?", "Remove sessions", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+            }
+        });
         cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

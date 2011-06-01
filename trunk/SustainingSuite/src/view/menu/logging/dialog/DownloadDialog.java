@@ -37,6 +37,12 @@ public class DownloadDialog extends JDialog {
             }
         });
         okButton = new JButton("Ok");
+        okButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                CentraStarAnalyzer.link.add(new DownloadProgressFrame());
+                DownloadDialog.this.dispose();
+            }
+        });
         cancelButton = new JButton("Cancel");
         FormLayout formLayout = new FormLayout("40dlu, 5dlu, 40dlu", "20dlu, 20dlu, 20dlu");
         PanelBuilder panelBuilder = new PanelBuilder(formLayout);

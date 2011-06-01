@@ -12,8 +12,10 @@ import javax.swing.*;
  * To change this template use File | Settings | File Templates.
  */
 public class TCPDumpingDialog extends JDialog {
+
     public TCPDumpingDialog() {
         super(CentraStarAnalyzer.link, "TCP dumping", false);
+
 
         pack();
         setLocationRelativeTo(null);
