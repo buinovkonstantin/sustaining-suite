@@ -27,7 +27,7 @@ public class DownloadProgressFrame extends JInternalFrame {
     public DownloadProgressFrame() {
         super("Download progress", true, true, true, true);
         downloadTable = new JTable(exampleOfData, columnNames);
-        FormLayout formLayout = new FormLayout("100dlu:grow(1)", "20dlu, 60dlu:grow(1)");
+        FormLayout formLayout = new FormLayout("100dlu:grow(1)", "5dlu, 60dlu:grow(1)");
         PanelBuilder panelBuilder = new PanelBuilder(formLayout);
         CellConstraints c = new CellConstraints();
         panelBuilder.add(downloadTable.getTableHeader(), c.xy(1, 1));
