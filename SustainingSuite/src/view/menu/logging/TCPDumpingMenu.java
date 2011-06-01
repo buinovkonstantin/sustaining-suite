@@ -1,5 +1,6 @@
 package view.menu.logging;
 
+import view.menu.logging.dialog.CreateTCPDumpingDialog;
 import view.menu.logging.dialog.TCPDumpingDialog;
 
 import javax.swing.*;
@@ -18,7 +19,8 @@ public class TCPDumpingMenu extends JMenuItem {
         super("TCP Dumping");
         addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new TCPDumpingDialog();
+//                new TCPDumpingDialog();
+                new CreateTCPDumpingDialog();
             }
         });
     }

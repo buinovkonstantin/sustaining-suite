@@ -1,6 +1,10 @@
 package view.menu.analyze;
 
+import view.menu.analyze.dialog.ZLibCodingDialog;
+
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by IntelliJ IDEA.
@@ -12,5 +16,10 @@ import javax.swing.*;
 public class ZLibMenu extends JMenuItem {
     public ZLibMenu() {
         super("ZLib enc/dec");
+        addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ZLibCodingDialog();
+            }
+        });
     }
 }

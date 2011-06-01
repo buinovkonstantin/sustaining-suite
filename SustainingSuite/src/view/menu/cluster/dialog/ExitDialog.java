@@ -42,7 +42,6 @@ public class ExitDialog extends JDialog {
         builder.add(noButton, c.xy(3, 4, "default,center"));
         add(builder.getPanel());
         pack();
-        setSize(getSize());
         setResizable(false);
         setLocationRelativeTo(null);
     }
