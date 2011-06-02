@@ -15,7 +15,6 @@ import java.awt.*;
  * To change this template use File | Settings | File Templates.
  */
 public class DownloadProgressFrame extends JInternalFrame {
-    public static DownloadProgressFrame instance;
     JTable downloadTable;
     private static Object[][] exampleOfData = new String[][]{
             {"c001n05", "/var/log/messages", "58%", "Downloading"},

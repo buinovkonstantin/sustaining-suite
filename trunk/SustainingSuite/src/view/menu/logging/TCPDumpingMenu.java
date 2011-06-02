@@ -1,7 +1,8 @@
 package view.menu.logging;
 
+import view.CentraStarAnalyzer;
 import view.menu.logging.dialog.CreateTCPDumpingDialog;
-import view.menu.logging.dialog.TCPDumpingDialog;
+import view.menu.logging.dialog.TCPDumpingFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,8 +20,7 @@ public class TCPDumpingMenu extends JMenuItem {
         super("TCP Dumping");
         addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-//                new TCPDumpingDialog();
-                new CreateTCPDumpingDialog();
+                CentraStarAnalyzer.link.add(new TCPDumpingFrame());
             }
         });
     }

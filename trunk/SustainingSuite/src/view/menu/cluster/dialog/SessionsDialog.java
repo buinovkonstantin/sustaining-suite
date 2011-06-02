@@ -4,7 +4,6 @@ import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import view.CentraStarAnalyzer;
-import view.menu.cluster.SessionsTable;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -28,9 +27,12 @@ public class SessionsDialog extends JDialog {
     public SessionsDialog() {
         super(CentraStarAnalyzer.link, "Sessions", false);
         existingSessionsLabel = new JLabel("Existing sessions");
-        sessionsTable = new SessionsTable();
-        sessionsTable.setFillsViewportHeight(true);
         resumeButton = new JButton("Resume");
+        resumeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SessionsDialog.this.dispose();
+            }
+        });
         removeButton = new JButton("Remove");
         removeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -44,6 +46,8 @@ public class SessionsDialog extends JDialog {
                 SessionsDialog.this.dispose();
             }
         });
+        sessionsTable = new SessionsTable();
+        sessionsTable.setFillsViewportHeight(true);
 
         FormLayout formLayout = new FormLayout("left:50dlu, left:50dlu, 50dlu:grow(1), right:50dlu", "10dlu, 10dlu, top:80dlu:grow(1), 20dlu");
         CellConstraints c = new CellConstraints();
@@ -59,5 +63,6 @@ public class SessionsDialog extends JDialog {
         pack();
         setLocationRelativeTo(null);
         setMinimumSize(getSize());
+        setVisible(true);
     }
 }

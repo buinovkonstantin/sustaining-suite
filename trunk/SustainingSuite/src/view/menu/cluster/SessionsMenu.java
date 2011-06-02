@@ -18,7 +18,7 @@ public class SessionsMenu extends JMenuItem {
         super("Sessions");
         addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new SessionsDialog().setVisible(true);
+                new SessionsDialog();
             }
         });
     }
