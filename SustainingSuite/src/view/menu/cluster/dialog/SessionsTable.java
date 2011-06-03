@@ -36,13 +36,11 @@ public class SessionsTable extends JTable {
 
         private SessionTableListener(final JButton resumeButton) {
             this.resumeButton = resumeButton;
-            resumeButton.setEnabled(true);
         }
 
         public void valueChanged(ListSelectionEvent e) {
             int row = getSelectedRow();
             String s = exampleOfData[row][1];
-            this.resumeButton.setEnabled(true);
 
             if(s.contains("yes")) {
                 this.resumeButton.setEnabled(true);

@@ -33,11 +33,8 @@ public class SessionsDialog extends JDialog {
         super(CentraStarAnalyzer.link, "Sessions", false);
         existingSessionsLabel = new JLabel("Existing sessions");
         resumeButton = new JButton("Resume");
-        resumeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                SessionsDialog.this.dispose();
-            }
-        });
+        resumeButton.setEnabled(false);
+
         removeButton = new JButton("Remove");
         removeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
