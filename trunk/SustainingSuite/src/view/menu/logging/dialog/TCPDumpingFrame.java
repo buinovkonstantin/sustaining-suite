@@ -43,7 +43,6 @@ public class TCPDumpingFrame extends JInternalFrame {
         PanelBuilder panelBuilder = new PanelBuilder(formLayout);
         CellConstraints c = new CellConstraints();
         panelBuilder.add(tcpDumpLabel, c.xyw(1, 1, 2));
-        panelBuilder.add(tcpDumpsTable.getTableHeader(), c.xyw(1, 2, 2));
         panelBuilder.add(new JScrollPane(tcpDumpsTable), c.xyw(1, 3, 2));
         panelBuilder.add(startButton, c.xy(1, 4, CC.LEFT, CC.CENTER));
         panelBuilder.add(stopButton, c.xy(2, 4, CC.RIGHT, CC.CENTER));

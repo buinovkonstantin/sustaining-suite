@@ -59,7 +59,6 @@ public class SessionsDialog extends JDialog {
         PanelBuilder builder = new PanelBuilder(formLayout);
         builder.setDefaultDialogBorder();
         builder.add(existingSessionsLabel, c.xyw(1,1,3));
-//        builder.add(sessionsTable.getTableHeader(), c.xyw(1,2,4));
         builder.add(new JScrollPane(sessionsTable, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), c.xyw(1, 3, 4));
         builder.add(resumeButton, c.xy(1,4));
         builder.add(removeButton, c.xy(2,4));
