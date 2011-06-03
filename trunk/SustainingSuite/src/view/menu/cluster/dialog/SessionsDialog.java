@@ -5,9 +5,14 @@ import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import view.CentraStarAnalyzer;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 
 /**
  * Created by IntelliJ IDEA.
@@ -46,7 +51,7 @@ public class SessionsDialog extends JDialog {
                 SessionsDialog.this.dispose();
             }
         });
-        sessionsTable = new SessionsTable();
+        sessionsTable = new SessionsTable(resumeButton);
         sessionsTable.setFillsViewportHeight(true);
 
         FormLayout formLayout = new FormLayout("left:50dlu, left:50dlu, 50dlu:grow(1), right:50dlu", "10dlu, 10dlu, top:80dlu:grow(1), 20dlu");
@@ -54,7 +59,7 @@ public class SessionsDialog extends JDialog {
         PanelBuilder builder = new PanelBuilder(formLayout);
         builder.setDefaultDialogBorder();
         builder.add(existingSessionsLabel, c.xyw(1,1,3));
-        builder.add(sessionsTable.getTableHeader(), c.xyw(1,2,4));
+//        builder.add(sessionsTable.getTableHeader(), c.xyw(1,2,4));
         builder.add(new JScrollPane(sessionsTable, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER), c.xyw(1, 3, 4));
         builder.add(resumeButton, c.xy(1,4));
         builder.add(removeButton, c.xy(2,4));

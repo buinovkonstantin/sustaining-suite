@@ -1,6 +1,8 @@
 package view.menu.cluster.dialog;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -21,11 +23,11 @@ public class SessionsTable extends JTable {
     };
     private static String[] columnNames = {"Server node", "Active", "Creation date", "Context size"};
 
-    public SessionsTable() {
+    public SessionsTable(JButton resumeButton) {
         //very stupid, only for example
         super(exampleOfData, columnNames);
         setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-       // getSelectionModel().addListSelectionListener(new SessionTableListener());
+        getSelectionModel().addListSelectionListener(new SessionTableListener(resumeButton));
     }
 
     private class SessionTableListener implements ListSelectionListener {

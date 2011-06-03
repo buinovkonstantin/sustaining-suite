@@ -5,8 +5,7 @@ import com.jgoodies.forms.factories.CC;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
-import javax.swing.*;
-import java.awt.*; /**
+import javax.swing.*; /**
  * Created by IntelliJ IDEA.
  * User: skripg
  * Date: 6/2/11

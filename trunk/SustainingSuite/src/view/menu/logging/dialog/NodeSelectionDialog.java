@@ -1,11 +1,9 @@
 package view.menu.logging.dialog;
 
-import com.jgoodies.forms.builder.DefaultFormBuilder;
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
-import com.sun.org.apache.bcel.internal.generic.FieldOrMethod;
 import view.CentraStarAnalyzer;
 
 import javax.swing.*;
