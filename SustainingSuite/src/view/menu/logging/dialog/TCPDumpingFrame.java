@@ -4,8 +4,6 @@ import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
-import view.CentraStarAnalyzer;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,7 +1,6 @@
 package view.menu.logging;
 
 import view.CentraStarAnalyzer;
-import view.menu.logging.dialog.CreateTCPDumpingDialog;
 import view.menu.logging.dialog.TCPDumpingFrame;
 
 import javax.swing.*;
