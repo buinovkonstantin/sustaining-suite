@@ -1,5 +1,9 @@
 package view;
 
+import client.context.ClientContext;
+import client.context.ClientContextException;
+import client.context.ConnectionParams;
+
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
@@ -27,23 +31,29 @@ public class ClusterConnectionInfoDialog extends JDialog {
     private JTextField loginField;
     private JLabel passwordLabel;
     private JPasswordField passwordField;
+	private ConnectionParams existingConnection;
 
     //TODO
-    public ClusterConnectionInfoDialog(Frame owner) {
+    public ClusterConnectionInfoDialog(Frame owner, ConnectionParams existingConnection) {
         super(owner, "Edit cluster connection info", true);
 
+       	this.existingConnection = existingConnection;
+        
         okButton = new JButton("Ok");
         okButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dispose();
+            	if(updateConnectionsParams());
+                	dispose();
             }
         });
+        
         cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });
+        
         connectionNameLabel = new JLabel("Connection name");
         clusterAddressLabel = new JLabel("Cluster address");
         connectionNameField = new JTextField();
@@ -110,4 +120,23 @@ public class ClusterConnectionInfoDialog extends JDialog {
         setResizable(false);
         setVisible(true);
     }
+
+	protected boolean updateConnectionsParams() {
+		ConnectionParams newConnectionParams = new ConnectionParams(
+				connectionNameField.getText(),
+				clusterAddressField.getText(),
+				loginField.getText());
+
+		try {
+			if(!ClientContext.updateConnectionsParams(existingConnection, newConnectionParams)) {
+				JOptionPane.showMessageDialog(this, "Connection with specified name already exists.\nPlease enter another name for the connection", "Existing connection name", JOptionPane.INFORMATION_MESSAGE);
+				return false;
+			}
+		} catch (ClientContextException e) {
+			JOptionPane.showMessageDialog(this, e.getMessage(), "Unexpected error occurred", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		
+		return true;
+	}
 }
