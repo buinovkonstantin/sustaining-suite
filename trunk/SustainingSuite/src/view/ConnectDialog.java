@@ -46,10 +46,15 @@ public class ConnectDialog extends JFrame {
         });
         cancelButton = new JButton("Cancel");
         addButton = new JButton("Add...");
+        addButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new ClusterConnectionInfoDialog(ConnectDialog.this, null);
+            }
+        });
         editButton = new JButton("Edit...");
         editButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ClusterConnectionInfoDialog(ConnectDialog.this);
+                new ClusterConnectionInfoDialog(ConnectDialog.this, null);
             }
         });
         removeButton = new JButton("Remove");

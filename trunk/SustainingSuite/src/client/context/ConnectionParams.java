@@ -1,4 +1,4 @@
-package model;
+package client.context;
 
 /**
  * Created by IntelliJ IDEA.
@@ -7,13 +7,19 @@ package model;
  * Time: 5:26 AM
  * To change this template use File | Settings | File Templates.
  */
-public class ConnectContext {
+public class ConnectionParams {
     private String connectionName;
     private String address;
     private String login;
     private String password;
 
-    public String getConnectionName() {
+    public ConnectionParams(String connectionName, String clusterAddress, String login) {
+    	this.connectionName = connectionName;
+    	this.address = clusterAddress;
+    	this.login = login;
+	}
+
+	public String getConnectionName() {
         return connectionName;
     }
 
