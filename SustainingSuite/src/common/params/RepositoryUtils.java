@@ -1,6 +1,8 @@
 package common.params;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +12,6 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.sun.org.apache.xerces.internal.parsers.DOMParser;
-
 import common.util.FileUtils;
 
 public class RepositoryUtils {
@@ -73,17 +74,39 @@ public class RepositoryUtils {
 			e.printStackTrace();
 		}
 		
-		if(document != null) {
-			NodeList repositoryTags = document.getElementsByTagName(REPOSITORY_TAG);
-			if(repositoryTags.getLength() > 0)
-				return new ParamsImpl(repositoryTags.item(0));
-
-			System.out.println(document.toString());
+		NodeList repositoryList = document.getElementsByTagName(REPOSITORY_TAG);
+		if(repositoryList.getLength() > 0)
+			return new ParamsImpl(repositoryList.item(0));
+		else {
+			Params repository = new ParamsImpl();
+			repository.setName(REPOSITORY_TAG);
+			return repository; 
 		}
-		
-		return new ParamsImpl();
 	}
 
+	public static void persistRepository(String repositoryName,
+			Params newRepositoryContent) {
+		synchronized (sRepositories) {
+			sRepositories.put(repositoryName, newRepositoryContent);
+			
+			Params repositoryContent = new ParamsImpl(newRepositoryContent);
+			repositoryContent.setName(REPOSITORY_TAG);
+			
+			File repository = new File(getRepositoryDirectoryPath(), repositoryName + REPOSITORY_SUFFIX);
+			try {
+				FileOutputStream outputStream = new FileOutputStream(repository);
+				outputStream.write(repositoryContent.toString().getBytes());
+				outputStream.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public static void main(String[] args) {
 		
 		System.out.println(FileUtils.getApplicationDirectoryPath());

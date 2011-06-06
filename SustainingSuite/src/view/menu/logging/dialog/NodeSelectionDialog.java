@@ -3,7 +3,6 @@ package view.menu.logging.dialog;
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;
 import com.jgoodies.forms.layout.FormLayout;
-import com.sun.corba.se.spi.presentation.rmi.IDLNameTranslator;
 import view.CentraStarAnalyzer;
 import view.components.jlist.JCheckBoxListRenderer;
 
