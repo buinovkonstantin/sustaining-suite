@@ -1,6 +1,6 @@
 package view.menu.logging;
 
-import view.menu.logging.dialog.DownloadDialog;
+import view.menu.logging.dialog.DownloadDateDialog;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -18,7 +18,7 @@ public class DownloadMenu extends JMenuItem {
         super("Download");
         addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new DownloadDialog();
+                new DownloadDateDialog();
             }
         });
     }

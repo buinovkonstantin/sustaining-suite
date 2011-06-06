@@ -1,6 +1,7 @@
 package view.menu.logging;
 
-import view.menu.logging.dialog.ExtendLoggingDialog;
+import view.CentraStarAnalyzer;
+import view.menu.logging.dialog.CustomLoggingFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -13,12 +14,12 @@ import java.awt.event.ActionListener;
  * Time: 3:13 AM
  * To change this template use File | Settings | File Templates.
  */
-public class ExtendLoggingMenu extends JMenuItem {
-    public ExtendLoggingMenu() {
-        super("Extend Logging");
+public class CustomLoggingMenu extends JMenuItem {
+    public CustomLoggingMenu() {
+        super("Custom Logging");
         addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ExtendLoggingDialog();
+                CentraStarAnalyzer.link.add(new CustomLoggingFrame());
             }
         });
     }
