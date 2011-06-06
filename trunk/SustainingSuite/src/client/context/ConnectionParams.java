@@ -50,4 +50,18 @@ public class ConnectionParams {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    @Override
+    public String toString() {
+    	StringBuilder builder = new StringBuilder();
+    	builder.append("[name=");
+    	builder.append(connectionName);
+    	builder.append("; address=");
+    	builder.append(address);
+    	builder.append("; login=");
+    	builder.append(login);
+    	builder.append("]");
+    	
+    	return builder.toString();
+    }
 }

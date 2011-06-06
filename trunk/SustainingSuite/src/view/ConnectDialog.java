@@ -1,5 +1,9 @@
 package view;
 
+import client.context.ClientContext;
+import client.context.ClientContextException;
+import client.context.ConnectionParams;
+
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
@@ -20,6 +24,9 @@ public class ConnectDialog extends JFrame {
     private JButton okButton;
     private JButton cancelButton;
 
+    private JList connectionList;
+    private DefaultListModel connectionListModel;
+    
     private JLabel addressLabel;
     private JLabel loginLabel;
 
@@ -44,22 +51,43 @@ public class ConnectDialog extends JFrame {
                 }
             }
         });
+        
         cancelButton = new JButton("Cancel");
         addButton = new JButton("Add...");
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new ClusterConnectionInfoDialog(ConnectDialog.this, null);
+                updateConnectionListModel();
             }
         });
         editButton = new JButton("Edit...");
         editButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 new ClusterConnectionInfoDialog(ConnectDialog.this, null);
+                updateConnectionListModel();
             }
         });
         removeButton = new JButton("Remove");
+        removeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	Object selectedConnection = connectionList.getSelectedValue();
+            	if(selectedConnection != null) {
+            		ConnectionParams removedConnection = ClientContext.getConnectionsParams().get((String) selectedConnection);
+            		try {
+						ClientContext.updateConnectionsParams(removedConnection, null);
+	                    updateConnectionListModel();
+					} catch (ClientContextException e1) {
+						e1.printStackTrace();
+					}
+            	}
+            		
+            }
+        });
 
-        JList connectionList = new JList(new String[]{"hopkinton", "spb"});
+        connectionListModel = new DefaultListModel();
+        updateConnectionListModel();
+        
+        connectionList = new JList(connectionListModel);
         connectionList.setLayoutOrientation(JList.VERTICAL);
         connectionList.setVisibleRowCount(-1);
         JScrollPane jScrollPane = new JScrollPane(connectionList);
@@ -98,7 +126,14 @@ public class ConnectDialog extends JFrame {
         setVisible(true);
     }
 
-    public static void main(String[] args) {
+    private void updateConnectionListModel() {
+    	connectionListModel.clear();
+    	
+        for(String connectionName : ClientContext.getConnectionsParams().keySet())
+        	connectionListModel.addElement(connectionName);
+	}
+
+	public static void main(String[] args) {
         new ConnectDialog();
     }
 
