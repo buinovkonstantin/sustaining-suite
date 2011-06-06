@@ -13,7 +13,7 @@ public class LoggingMenu extends JMenu {
     public LoggingMenu() {
         super("Logging");
         add(new SearchInLogsMenu());
-        add(new ExtendLoggingMenu());
+        add(new CustomLoggingMenu());
         add(new TCPDumpingMenu());
         add(new DownloadMenu());
     }

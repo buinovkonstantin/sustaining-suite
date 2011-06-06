@@ -44,9 +44,21 @@ public class SearchInLogsDialog extends JDialog {
         platformBox = new JCheckBox("Platform");
         osBox = new JCheckBox("OS");
         patternBox = new JCheckBox("regular expression");
-        expressionField = new JTextField();
         searchButton = new JButton("Search");
+        searchButton.setEnabled(false);
+        searchButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                CentraStarAnalyzer.link.add(new LogFrame());
+                SearchInLogsDialog.this.dispose();
+            }
+        });
+        expressionField = new JTextField();
         cancelButton = new JButton("Cancel");
+        LogTypeActionListener logTypeActionListener = new LogTypeActionListener(searchButton, filepoolBox, platformBox, osBox);
+        filepoolBox.addActionListener(logTypeActionListener);
+        platformBox.addActionListener(logTypeActionListener);
+        osBox.addActionListener(logTypeActionListener);
+
         FormLayout formLayout = new FormLayout("60dlu, 5dlu, 60dlu, 5dlu, 60dlu,", "20dlu, 20dlu, 20dlu, 20dlu, 20dlu, 20dlu, 20dlu, 20dlu, 20dlu, 20dlu, 20dlu, 20dlu, 20dlu, 20dlu");
         PanelBuilder panelBuilder = new PanelBuilder(formLayout);
         panelBuilder.setDefaultDialogBorder();
@@ -70,5 +82,25 @@ public class SearchInLogsDialog extends JDialog {
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
+    }
+    private class LogTypeActionListener implements ActionListener {
+
+        private JButton searchButton;
+        private JCheckBox[] checkBoxes;
+
+        private LogTypeActionListener(JButton searchButton, JCheckBox... checkBoxes) {
+            this.searchButton = searchButton;
+            this.checkBoxes = checkBoxes;
+        }
+
+        public void actionPerformed(ActionEvent e) {
+            for(JCheckBox checkBox:checkBoxes) {
+                if(checkBox.isSelected()) {
+                    searchButton.setEnabled(true);
+                    return;
+                }
+            }
+            searchButton.setEnabled(false);
+        }
     }
 }
