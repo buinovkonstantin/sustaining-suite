@@ -22,12 +22,11 @@ public class LogSink {
         ClusterComponent("ClusterManager"),
         ProfileComponent("ProfileManager"),
         PoolComponent("PoolComponent"),
-        PoolServerComponent("PoolServerManager"),
+        AuthenticationComponent("AuthenticationComponent"),
         GC("GarbageCollectionManager"),
         GCII("GCII"),
-        FIE("FullIterationEngineManager"),
-        ReplicationAccessModule("ReplicationAccessModule"),
-        ReplicationStorageModule("ReplicationStorageModule");
+        GlobalIterationCompenent("GlobalIterationCompenent"),
+        ReplicationComponent("ReplicationComponent");
 
         private String name;
 
@@ -71,6 +70,47 @@ public class LogSink {
     private String fileExt;
     private boolean logHeader;
     private String creationLockFileName;
+    
     public LogSink() {
     }
+
+	public void setFileFolder(String fileFolder) {
+		this.fileFolder = fileFolder;
+	}
+
+	public String getFileFolder() {
+		return fileFolder;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileExt(String fileExt) {
+		this.fileExt = fileExt;
+	}
+
+	public String getFileExt() {
+		return fileExt;
+	}
+
+	public void setLogHeader(boolean logHeader) {
+		this.logHeader = logHeader;
+	}
+
+	public boolean isLogHeader() {
+		return logHeader;
+	}
+
+	public void setCreationLockFileName(String creationLockFileName) {
+		this.creationLockFileName = creationLockFileName;
+	}
+
+	public String getCreationLockFileName() {
+		return creationLockFileName;
+	}
 }

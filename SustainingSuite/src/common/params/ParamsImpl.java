@@ -47,10 +47,12 @@ public class ParamsImpl implements Params {
 		root = document.getDocumentElement();
 	}
 
+	@Override
 	public void setName(String name) {
 		document.renameNode(root, null, name);
 	}
 	
+	@Override
 	public String getString(String name) throws ParamsException {
 		NodeList list = root.getElementsByTagName(PARAMETER);
 		for(int index = 0; index < list.getLength(); index++) {
@@ -82,6 +84,7 @@ public class ParamsImpl implements Params {
 		throw new ParamsException("There is no parameter ["+name+"]");
 	}
 
+	@Override
 	public void putString(String name, String value) {
 		Element node = document.createElement(PARAMETER);
 		node.setAttribute(PARAMETER_NAME, name);
@@ -90,6 +93,7 @@ public class ParamsImpl implements Params {
 		root.appendChild(node);
 	}
 
+	@Override
 	public void putParams(String name, Params params) {
 		Element node = document.createElement(name);
 		
@@ -103,6 +107,7 @@ public class ParamsImpl implements Params {
 		root.appendChild(node);
 	}
 	
+	@Override
 	public Params[] getAllParamsWithName(String name) {
 		NodeList list = root.getElementsByTagName(name);
 		
@@ -114,6 +119,7 @@ public class ParamsImpl implements Params {
 		return paramsArray;
 	}
 	
+	@Override
 	public final Element getXmlContent() {
 		return root;
 	}
