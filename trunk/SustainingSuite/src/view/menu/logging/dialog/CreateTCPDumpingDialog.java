@@ -1,11 +1,13 @@
 package view.menu.logging.dialog;
 
 import com.jgoodies.forms.builder.PanelBuilder;
+import com.jgoodies.forms.factories.CC;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 import view.CentraStarAnalyzer;
 
 import javax.swing.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,10 +27,12 @@ public class CreateTCPDumpingDialog extends JDialog {
     JTextField filterField;
     JButton createButton;
     JButton cancelButton;
+    JTextField nodesField;
     JButton nodeSelectionDialog;
 
     public CreateTCPDumpingDialog() {
         super(CentraStarAnalyzer.link, "Create new TCP dumping", true);
+        nodesField = new JTextField();
         nodeSelectionDialog = new JButton("Select nodes...");
         nodeSelectionDialog.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -46,9 +50,10 @@ public class CreateTCPDumpingDialog extends JDialog {
         CellConstraints c = new CellConstraints();
         panelBuilder.setDefaultDialogBorder();
         panelBuilder.addSeparator("Nodes", c.xyw(1, 1, 3));
-        panelBuilder.add(nodeSelectionDialog, c.xy(1, 2));
+        panelBuilder.add(nodesField, CC.xy(1, 2, CC.FILL, CC.CENTER));
+        panelBuilder.add(nodeSelectionDialog, c.xy(3, 2));
         panelBuilder.addSeparator("Network interface", c.xyw(1, 3, 3));
-        panelBuilder.add(interfaceBox, c.xy(1, 4));
+        panelBuilder.add(interfaceBox, c.xy(1, 4, CC.LEFT, CC.CENTER));
         panelBuilder.addSeparator("Pcap filter", c.xyw(1, 5, 3));
         panelBuilder.add(filterField, c.xyw(1, 6, 3));
         panelBuilder.add(createButton, c.xy(1, 7));

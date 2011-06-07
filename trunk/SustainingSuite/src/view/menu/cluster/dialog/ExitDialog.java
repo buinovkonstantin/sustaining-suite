@@ -23,7 +23,7 @@ public class ExitDialog extends JDialog {
 
     public ExitDialog() {
         super(CentraStarAnalyzer.link, "Disconnect from cluster", true);
-        disconnectInfoLabel = new JLabel("Are you want to disconnect from cluster?");
+        disconnectInfoLabel = new JLabel("Are you sure you want to disconnect from cluster?");
         serverModuleBox = new JCheckBox("stop server module");
         sessionContextBox = new JCheckBox("remove session context");
         yesButton = new JButton("Yes");
@@ -31,7 +31,7 @@ public class ExitDialog extends JDialog {
         setTitle("Disconnect from cluster");
         setModal(true);
 
-        FormLayout formLayout = new FormLayout("60dlu, 10dlu, 60dlu", "20dlu, 20dlu, 20dlu, 20dlu");
+        FormLayout formLayout = new FormLayout("70dlu, 10dlu, 70dlu", "20dlu, 20dlu, 20dlu, 20dlu");
         CellConstraints c = new CellConstraints();
         PanelBuilder builder = new PanelBuilder(formLayout);
         builder.setDefaultDialogBorder();

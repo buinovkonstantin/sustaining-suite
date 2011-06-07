@@ -119,7 +119,7 @@ public class CreateCustomLogDialog extends JDialog {
         panelBuilder.add(nodesField, CC.xy(1, 2, CC.FILL, CC.CENTER));
         panelBuilder.add(nodesButton, CC.xy(3, 2, CC.CENTER, CC.CENTER));
         panelBuilder.addSeparator("Log level", CC.xyw(1, 4, 3));
-        panelBuilder.add(statusBox, CC.xy(1, 5, CC.CENTER, CC.CENTER));
+        panelBuilder.add(statusBox, CC.xy(1, 5, CC.LEFT, CC.CENTER));
         panelBuilder.addSeparator("Components", CC.xyw(1, 7, 3));
         panelBuilder.add(new JScrollPane(componentsList), CC.xyw(1, 8, 3));
         panelBuilder.addSeparator("Filters", CC.xyw(1, 10, 3));
