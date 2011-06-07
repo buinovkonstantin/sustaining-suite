@@ -12,7 +12,7 @@ import java.awt.*;
 * To change this template use File | Settings | File Templates.
 */
 public class JComboBoxCellRenderer extends JComboBox implements TableCellRenderer {
-    public JComboBoxCellRenderer(String[] items) {
+    public JComboBoxCellRenderer(Object[] items) {
         super(items);
     }
 
