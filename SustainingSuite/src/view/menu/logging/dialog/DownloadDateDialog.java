@@ -3,6 +3,8 @@ package view.menu.logging.dialog;
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;
 import com.jgoodies.forms.layout.FormLayout;
+
+import view.CentraStarAnalyzer;
 import view.components.jlist.JCheckBoxListRenderer;
 
 import javax.swing.*;
@@ -36,6 +38,7 @@ public class DownloadDateDialog extends JDialog {
     private static String[] columnNames = {"Node", "Path", "Name", "Creation date/time"};
 
     public DownloadDateDialog() {
+    	super(CentraStarAnalyzer.link, "Download data", true);
         nodesField = new JTextField();
         nodesButton = new JButton("Select nodes...");
         nodesButton.addActionListener(new ActionListener() {
@@ -65,6 +68,12 @@ public class DownloadDateDialog extends JDialog {
         oldSessionsBox = new JCheckBox("Query data of the other sessions also");
         existingDataTable = new JTable(exampleOfData, columnNames);
         downloadButton = new JButton("Download selected data...");
+        downloadButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	CentraStarAnalyzer.link.add(new DownloadProgressFrame());
+            	DownloadDateDialog.this.dispose();
+            }
+        });
         cancelButton = new JButton("Cancel");
 
         FormLayout formLayout = new FormLayout("100dlu, 10dlu:grow(1), 60dlu", "20dlu, 20dlu, 20dlu, 20dlu, 40dlu:grow(0.5), 20dlu, 20dlu, 20dlu, 60dlu:grow(0.5), 20dlu");
