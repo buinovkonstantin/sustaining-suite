@@ -3,8 +3,10 @@ package view.menu.logging.dialog;
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;
 import com.jgoodies.forms.layout.FormLayout;
+import model.logging.LogSink;
 import view.CentraStarAnalyzer;
 import view.components.jlist.JCheckBoxListRenderer;
+import view.components.jlist.JListUtils;
 import view.components.jtable.JComboBoxCellRenderer;
 import view.components.jtable.JComboBoxEditor;
 
@@ -15,6 +17,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 /**
  * Created by IntelliJ IDEA.
@@ -39,8 +43,6 @@ public class CreateCustomLogDialog extends JDialog {
     JButton cancelButton;
 
 
-    String[] items = new String[]{"Status", "Warning", "Error", "Debug", "Verbose"};
-
     public CreateCustomLogDialog() {
         super(CentraStarAnalyzer.link, "Create Custom log", true);
 
@@ -51,18 +53,9 @@ public class CreateCustomLogDialog extends JDialog {
                 new NodeSelectionDialog();
             }
         });
-        statusBox = new JComboBox(new String[]{"Status", "Warning", "Error", "Debug", "Verbose"});
-        componentsList = new JList(new JCheckBox[] {
-                new JCheckBox("Cluster Component"),
-                new JCheckBox("Profile Component"),
-                new JCheckBox("Pool Component"),
-                new JCheckBox("PoolServer Component"),
-                new JCheckBox("GC"),
-                new JCheckBox("GCII"),
-                new JCheckBox("FIE"),
-                new JCheckBox("ReplicationAccessModule"),
-                new JCheckBox("ReplicationStorageModule"),
-        });
+        statusBox = new JComboBox(LogSink.Level.values());
+        componentsList = JListUtils.createCheckBoxesList(LogSink.Component.values());
+        //TODO       methods \/ refactor to /\ method
         componentsList.setCellRenderer(new JCheckBoxListRenderer());
         componentsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         componentsList.addMouseListener(new MouseAdapter() {
@@ -77,18 +70,18 @@ public class CreateCustomLogDialog extends JDialog {
         });
 
         filterTable = new JTable();
-        filterTable.setRowHeight(20);
+        filterTable.setRowHeight(25);
         TableModel model = filterTable.getModel();
         ((DefaultTableModel)model).addColumn("Type");
         ((DefaultTableModel)model).addColumn("Value");
-        filterTable.getColumnModel().getColumn(0).setCellEditor(new JComboBoxEditor(new JComboBox(items)));
-        filterTable.getColumnModel().getColumn(0).setCellRenderer(new JComboBoxCellRenderer(items));
-        ((DefaultTableModel)model).addRow(new Object[] {"Status", "NoCapacity"});
+        filterTable.getColumnModel().getColumn(0).setCellEditor(new JComboBoxEditor(new JComboBox(LogSink.logFilterType.values())));
+        filterTable.getColumnModel().getColumn(0).setCellRenderer(new JComboBoxCellRenderer(LogSink.logFilterType.values()));
+        ((DefaultTableModel)model).addRow(new Object[] {LogSink.logFilterType.message, "NoCapacity"});
 
         addFilterButton = new JButton("Add...");
         addFilterButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ((DefaultTableModel)filterTable.getModel()).addRow(new Object[] {"Status", ""});
+                ((DefaultTableModel)filterTable.getModel()).addRow(new Object[] {LogSink.logFilterType.message, ""});
             }
         });
         removeFilterButton = new JButton("Remove");
