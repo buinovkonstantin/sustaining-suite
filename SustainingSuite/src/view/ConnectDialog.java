@@ -20,7 +20,7 @@ import java.awt.event.ActionListener;
  * Time: 2:59 AM
  * To change this template use File | Settings | File Templates.
  */
-public class ConnectDialog extends JFrame {
+public class ConnectDialog extends JDialog {
     private JButton okButton;
     private JButton cancelButton;
 
@@ -36,9 +36,8 @@ public class ConnectDialog extends JFrame {
     private JTextField addressField;
     private JTextField loginField;
 
-    //TODO
     public ConnectDialog() throws HeadlessException {
-        super("Choose a cluster to connect to");
+        super((JFrame) null, "Choose a cluster to connect to");
 
         okButton = new JButton("Ok");
         okButton.addActionListener(new ActionListener() {
@@ -46,8 +45,8 @@ public class ConnectDialog extends JFrame {
                 AuthResult authResult = new AuthResult();
                 new EnterPasswordDialog(ConnectDialog.this, authResult);
                 if(authResult.isAccept()) {
-                    new CentraStarAnalyzer();
                     ConnectDialog.this.dispose();
+                    new CentraStarAnalyzer();
                 }
             }
         });
@@ -63,7 +62,12 @@ public class ConnectDialog extends JFrame {
         editButton = new JButton("Edit...");
         editButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ClusterConnectionInfoDialog(ConnectDialog.this, null);
+            	String selectedListItem = (String) connectionList.getSelectedValue();
+            	if(selectedListItem == null)
+            		return;
+            	
+            	ConnectionParams selectedConnection = ClientContext.getConnectionsParams().get(selectedListItem);
+                new ClusterConnectionInfoDialog(ConnectDialog.this, selectedConnection);
                 updateConnectionListModel();
             }
         });
@@ -101,11 +105,11 @@ public class ConnectDialog extends JFrame {
         loginField.setMaximumSize(new Dimension(200, 30));
 
         FormLayout formLayout = new FormLayout("100px, 15px, 80px",
-                "20px,20px, 15px,20px,20px, 15px,20px,15px, 20px,15px,20px, 15px,20px");
+                "15px,20px, 5px, 15px,20px, 15px,20px,10px, 20px,10px,20px, 15px,20px");
         CellConstraints c = new CellConstraints();
         PanelBuilder builder = new PanelBuilder(formLayout);
         builder.setDefaultDialogBorder();
-        builder.add(jScrollPane, c.xywh(1,1,1,10));
+        builder.add(jScrollPane, c.xywh(1,1,1,11));
         builder.add(addressLabel, c.xy(3,1));
         builder.add(addressField, c.xy(3,2));
         builder.add(loginLabel, c.xy(3,4));
@@ -117,7 +121,7 @@ public class ConnectDialog extends JFrame {
         builder.add(cancelButton, c.xy(3,13));
 
         add(builder.getPanel());
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         pack();
         setMinimumSize(getSize());
         setMaximumSize(getSize());
