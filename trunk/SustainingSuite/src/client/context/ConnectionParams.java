@@ -11,7 +11,6 @@ public class ConnectionParams {
     private String connectionName;
     private String address;
     private String login;
-    private String password;
 
     public ConnectionParams(String connectionName, String clusterAddress, String login) {
     	this.connectionName = connectionName;
@@ -23,34 +22,14 @@ public class ConnectionParams {
         return connectionName;
     }
 
-    public void setConnectionName(String connectionName) {
-        this.connectionName = connectionName;
-    }
-
     public String getAddress() {
         return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
     }
 
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    
     @Override
     public String toString() {
     	StringBuilder builder = new StringBuilder();
