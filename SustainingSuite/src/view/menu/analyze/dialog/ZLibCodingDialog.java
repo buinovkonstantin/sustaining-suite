@@ -1,5 +1,8 @@
 package view.menu.analyze.dialog;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
@@ -19,7 +22,7 @@ public class ZLibCodingDialog extends JDialog {
     JRadioButton zLibEncodeButton;
     JRadioButton zLibDecodeButton;
     ButtonGroup group;
-    JButton okButton;
+    JButton saveButton;
     JButton cancelButton;
 
     public ZLibCodingDialog() {
@@ -30,8 +33,23 @@ public class ZLibCodingDialog extends JDialog {
         group = new ButtonGroup();
         group.add(zLibEncodeButton);
         group.add(zLibDecodeButton);
-        okButton = new JButton("Ok");
+        saveButton = new JButton("Save");
+        saveButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	JFileChooser fileChooser = new JFileChooser();
+            	int retVal = fileChooser.showOpenDialog(ZLibCodingDialog.this);
+            	if(retVal == JFileChooser.APPROVE_OPTION) {
+            		ZLibCodingDialog.this.dispose();
+            	}
+            }
+        });
+
         cancelButton = new JButton("Cancel");
+        cancelButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	ZLibCodingDialog.this.dispose();
+            }
+        });
         FormLayout formLayout = new FormLayout("40dlu, 10dlu, 40dlu", "20dlu, 20dlu, 20dlu, 20dlu");
         PanelBuilder panelBuilder = new PanelBuilder(formLayout);
         CellConstraints c = new CellConstraints();
@@ -41,7 +59,7 @@ public class ZLibCodingDialog extends JDialog {
         panelBuilder.add(selectLabel, c.xyw(1, 1, 3));
         panelBuilder.add(zLibEncodeButton, c.xyw(1, 2, 3));
         panelBuilder.add(zLibDecodeButton, c.xyw(1, 3, 3));
-        panelBuilder.add(okButton, c.xy(1, 4));
+        panelBuilder.add(saveButton, c.xy(1, 4));
         panelBuilder.add(cancelButton, c.xy(3, 4));
         add(panelBuilder.getPanel());
         pack();
