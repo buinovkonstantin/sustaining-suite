@@ -1,9 +1,9 @@
 package view;
 
-import view.menu.analyze.AnalyzeMenu;
-import view.menu.cluster.ClusterMenu;
-import view.menu.help.HelpMenu;
-import view.menu.logging.LoggingMenu;
+import view.menu.AnalyzeMenu;
+import view.menu.ClusterMenu;
+import view.menu.HelpMenu;
+import view.menu.LoggingMenu;
 
 import javax.swing.*;
 import java.awt.*;

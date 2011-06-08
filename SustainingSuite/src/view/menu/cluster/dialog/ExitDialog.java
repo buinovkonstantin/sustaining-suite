@@ -44,5 +44,6 @@ public class ExitDialog extends JDialog {
         pack();
         setResizable(false);
         setLocationRelativeTo(null);
+        setVisible(true);
     }
 }
