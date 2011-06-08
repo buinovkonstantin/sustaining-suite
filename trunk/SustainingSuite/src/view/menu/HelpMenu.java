@@ -1,4 +1,4 @@
-package view.menu.help;
+package view.menu;
 
 import javax.swing.*;
 
@@ -12,7 +12,11 @@ import javax.swing.*;
 public class HelpMenu extends JMenu {
     public HelpMenu() {
         super("Help");
-        add(new UsersManualMenu());
-        add(new AboutMenu());
+
+        // User's Manual Menu item
+        add(new JMenuItem("User's Manual"));
+
+        // About Menu item
+        add(new JMenuItem("About"));
     }
 }
