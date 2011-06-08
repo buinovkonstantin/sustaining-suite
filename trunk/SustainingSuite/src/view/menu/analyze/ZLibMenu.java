@@ -1,5 +1,6 @@
 package view.menu.analyze;
 
+import view.CentraStarAnalyzer;
 import view.menu.analyze.dialog.ZLibCodingDialog;
 
 import javax.swing.*;
@@ -18,7 +19,10 @@ public class ZLibMenu extends JMenuItem {
         super("ZLib enc/dec");
         addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ZLibCodingDialog();
+            	JFileChooser fileChooser = new JFileChooser();
+            	int retVal = fileChooser.showOpenDialog(CentraStarAnalyzer.link);
+            	if(retVal == JFileChooser.APPROVE_OPTION)
+            		new ZLibCodingDialog();
             }
         });
     }
