@@ -14,7 +14,8 @@ import javax.swing.*;
  * To change this template use File | Settings | File Templates.
  */
 public class LogFrame extends JInternalFrame {
-    JTable logTable;
+    private JTable logTable;
+	private JTextField statusField;
     private static Object[][] exampleOfData = new String[][]{
             {"2009.10.05 23:20:46.082", "c001n09", "WARNING NoCapacity"},
             {"", "", ""},
@@ -25,10 +26,13 @@ public class LogFrame extends JInternalFrame {
     public LogFrame() {
         super("Log", true, true, true, true);
         logTable = new JTable(exampleOfData, columnNames);
-        FormLayout formLayout = new FormLayout("100dlu:grow(1)", "60dlu:grow(1)");
+        statusField = new JTextField();
+        statusField.setEditable(false);
+        FormLayout formLayout = new FormLayout("200dlu:grow(1)", "100dlu:grow(1), 20px");
         PanelBuilder panelBuilder = new PanelBuilder(formLayout);
         CellConstraints c = new CellConstraints();
         panelBuilder.add(new JScrollPane(logTable), c.xy(1, 1));
+        panelBuilder.add(statusField, c.xy(1, 2));
         add(panelBuilder.getPanel());
         pack();
         setVisible(true);
