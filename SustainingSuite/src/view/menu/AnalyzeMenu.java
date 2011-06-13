@@ -25,15 +25,6 @@ public class AnalyzeMenu extends JMenu {
     public AnalyzeMenu() {
         super("Analyze");
 
-        // Smart Packet Menu item
-        JMenuItem smartpacketMenuItem = new JMenuItem("Smart Packet decode...");
-        smartpacketMenuItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                CentraStarAnalyzer.link.add(new TextFrame("Smart packet content"));
-            }
-        });
-        add(smartpacketMenuItem);
-        
         // Base64 Menu item
         JMenuItem base64MenuItem = new JMenuItem("Base64 encode/decode...");
         base64MenuItem.addActionListener(new ActionListener() {
@@ -43,8 +34,17 @@ public class AnalyzeMenu extends JMenu {
         });
         add(base64MenuItem);
         
+        // Smart Packet Menu item
+        JMenuItem smartpacketMenuItem = new JMenuItem("Smart Packet decode");
+        smartpacketMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                CentraStarAnalyzer.link.getDesktop().add(new TextFrame("Smart packet content"));
+            }
+        });
+        add(smartpacketMenuItem);
+        
         // ZLib Menu item
-        JMenuItem zlibMenuItem = new JMenuItem("ZLib compress/decompress...");
+        JMenuItem zlibMenuItem = new JMenuItem("ZLib compress/decompress");
         zlibMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	JFileChooser fileChooser = new JFileChooser();

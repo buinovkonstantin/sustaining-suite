@@ -6,6 +6,12 @@ import view.menu.HelpMenu;
 import view.menu.LoggingMenu;
 
 import javax.swing.*;
+
+import com.jgoodies.forms.builder.PanelBuilder;
+import com.jgoodies.forms.factories.CC;
+import com.jgoodies.forms.layout.CellConstraints;
+import com.jgoodies.forms.layout.FormLayout;
+
 import java.awt.*;
 
 /**
@@ -22,7 +28,6 @@ public class CentraStarAnalyzer extends JFrame {
         super("CentraStarAnalyzer");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(300, 300));
-        setSize(600, 400);
         JMenuBar menuBar = new JMenuBar();
         ClusterMenu clusterMenu = new ClusterMenu();
         LoggingMenu loggingMenu = new LoggingMenu();
@@ -32,10 +37,22 @@ public class CentraStarAnalyzer extends JFrame {
         menuBar.add(loggingMenu);
         menuBar.add(analyzeMenu);
         menuBar.add(helpMenu);
+        menuBar.add(new JMenu("Windows"));
         setJMenuBar(menuBar);
+        
         desktop = new JDesktopPane();
         desktop.setDragMode(JDesktopPane.DRAG_LAYER);
-        setContentPane(desktop);
+        JLabel statusBarLabel = new JLabel("Connected as admin to Lab_cluster4 [192.168.4.3]");
+        
+        FormLayout formLayout = new FormLayout("100px:grow(1)", "100px:grow(1), 20px");
+        PanelBuilder panelBuilder = new PanelBuilder(formLayout);
+        CellConstraints c = new CellConstraints();
+        panelBuilder.add(desktop, c.xy(1, 1, CC.FILL, CC.FILL));
+        panelBuilder.add(statusBarLabel, c.xy(1, 2));
+        setContentPane(panelBuilder.getPanel());
+        
+        pack();
+        setSize(600, 400);
         setLocationRelativeTo(null);
         setVisible(true);
         link = this;
@@ -43,5 +60,9 @@ public class CentraStarAnalyzer extends JFrame {
 
     public static void main(String[] args) {
         new CentraStarAnalyzer();
+    }
+    
+    public Container getDesktop() {
+    	return desktop;
     }
 }

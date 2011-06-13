@@ -36,7 +36,7 @@ public class LoggingMenu extends JMenu {
         JMenuItem customMenuItem = new JMenuItem("Custom Logging...");
         customMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	CentraStarAnalyzer.link.add(new CustomLoggingFrame());
+            	CentraStarAnalyzer.link.getDesktop().add(new CustomLoggingFrame());
             }
         });
         add(customMenuItem);
@@ -45,7 +45,7 @@ public class LoggingMenu extends JMenu {
         JMenuItem tcpdumpingMenuItem = new JMenuItem("TCP dumping...");
         tcpdumpingMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	CentraStarAnalyzer.link.add(new TCPDumpingFrame());
+            	CentraStarAnalyzer.link.getDesktop().add(new TCPDumpingFrame());
             }
         });
         add(tcpdumpingMenuItem);
