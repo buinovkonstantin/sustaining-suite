@@ -65,12 +65,12 @@ public class DownloadDateDialog extends JDialog {
                 list.repaint(list.getCellBounds(index, index));
             }
         });
-        oldSessionsBox = new JCheckBox("Query data of the other sessions also");
+        oldSessionsBox = new JCheckBox("Query data of other sessions also");
         existingDataTable = new JTable(exampleOfData, columnNames);
-        downloadButton = new JButton("Download selected data...");
+        downloadButton = new JButton("Download selected data");
         downloadButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	CentraStarAnalyzer.link.add(new DownloadProgressFrame());
+            	CentraStarAnalyzer.link.getDesktop().add(new DownloadProgressFrame());
             	DownloadDateDialog.this.dispose();
             }
         });

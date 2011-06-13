@@ -48,7 +48,7 @@ public class SearchInLogsDialog extends JDialog {
         searchButton.setEnabled(false);
         searchButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                CentraStarAnalyzer.link.add(new LogFrame());
+                CentraStarAnalyzer.link.getDesktop().add(new LogFrame());
                 SearchInLogsDialog.this.dispose();
             }
         });

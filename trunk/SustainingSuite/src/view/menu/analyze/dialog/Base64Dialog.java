@@ -26,15 +26,15 @@ public class Base64Dialog extends JDialog {
 
     public Base64Dialog() {
         super(CentraStarAnalyzer.link, "Base64", false);
-        encodedOpenButton = new JButton("Open...");
+        encodedOpenButton = new JButton("Open encoded file...");
         encodedArea = new JTextArea(10,20);
         decodeButton = new JButton("Decode");
         decodeAndSaveButton= new JButton("Decode and save as...");
-        decodedOpenButton = new JButton("Open...");
+        decodedOpenButton = new JButton("Open decoded file...");
         decodedArea = new JTextArea(10,20);
         encodeButton = new JButton("Encode");
         encodeAndSaveButton = new JButton("Encode and save as...");
-        FormLayout formLayout = new FormLayout("40dlu, 80dlu:grow(1), 90dlu", "20dlu, 20dlu, 80dlu:grow(.5), 20dlu, 20dlu, 20dlu, 20dlu, 80dlu:grow(.5), 20dlu");
+        FormLayout formLayout = new FormLayout("100dlu, 80dlu:grow(1), 90dlu", "20dlu, 20dlu, 80dlu:grow(.5), 20dlu, 20dlu, 20dlu, 20dlu, 80dlu:grow(.5), 20dlu");
         PanelBuilder panelBuilder = new PanelBuilder(formLayout);
         CellConstraints c = new CellConstraints();
         panelBuilder.setDefaultDialogBorder();

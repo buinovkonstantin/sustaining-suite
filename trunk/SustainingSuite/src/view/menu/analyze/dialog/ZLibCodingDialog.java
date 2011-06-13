@@ -54,7 +54,6 @@ public class ZLibCodingDialog extends JDialog {
         PanelBuilder panelBuilder = new PanelBuilder(formLayout);
         CellConstraints c = new CellConstraints();
         panelBuilder.setDefaultDialogBorder();
-      //  panelBuilder.add(selectLabel, c.xyw());
 
         panelBuilder.add(selectLabel, c.xyw(1, 1, 3));
         panelBuilder.add(zLibEncodeButton, c.xyw(1, 2, 3));
