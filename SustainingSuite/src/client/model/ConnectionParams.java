@@ -1,4 +1,4 @@
-package client.context;
+package client.model;
 
 /**
  * Created by IntelliJ IDEA.

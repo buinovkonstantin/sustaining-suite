@@ -1,4 +1,4 @@
-package client.context;
+package client.model;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -6,7 +6,6 @@ import java.util.TreeMap;
 import common.params.Params;
 import common.params.ParamsException;
 import common.params.ParamsImpl;
-import common.params.RepositoryUtils;
 
 public class ClientContext {
 

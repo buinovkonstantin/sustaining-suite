@@ -1,8 +1,8 @@
 package client.view;
 
-import client.context.ClientContext;
-import client.context.ClientContextException;
-import client.context.ConnectionParams;
+import client.model.ClientContext;
+import client.model.ClientContextException;
+import client.model.ConnectionParams;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
