@@ -1,4 +1,4 @@
-package client.view.menu.logging.dialog;
+package client.view.menu.logging;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,10 +20,6 @@ import javax.swing.table.TableModel;
 import model.logging.LogSink;
 
 import client.view.CentraStarAnalyzer;
-import client.view.components.jlist.JCheckBoxListRenderer;
-import client.view.components.jlist.JListUtils;
-import client.view.components.jtable.JComboBoxCellRenderer;
-import client.view.components.jtable.JComboBoxEditor;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;

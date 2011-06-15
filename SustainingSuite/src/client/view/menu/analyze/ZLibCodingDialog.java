@@ -1,4 +1,4 @@
-package client.view.menu.analyze.dialog;
+package client.view.menu.analyze;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

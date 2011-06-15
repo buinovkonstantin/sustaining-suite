@@ -1,4 +1,4 @@
-package client.view.components.jtable;
+package client.view.menu.logging;
 
 import javax.swing.*;
 import javax.swing.table.TableCellRenderer;

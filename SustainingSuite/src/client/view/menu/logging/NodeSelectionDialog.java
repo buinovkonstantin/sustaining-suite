@@ -1,7 +1,6 @@
-package client.view.menu.logging.dialog;
+package client.view.menu.logging;
 
 import client.view.CentraStarAnalyzer;
-import client.view.components.jlist.JCheckBoxListRenderer;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;

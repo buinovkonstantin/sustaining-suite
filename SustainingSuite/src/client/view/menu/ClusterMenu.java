@@ -5,8 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import client.view.menu.cluster.dialog.ExitDialog;
-import client.view.menu.cluster.dialog.SessionsDialog;
+import client.view.menu.cluster.ExitDialog;
+import client.view.menu.cluster.SessionsDialog;
 
 
 public class ClusterMenu extends JMenu {
