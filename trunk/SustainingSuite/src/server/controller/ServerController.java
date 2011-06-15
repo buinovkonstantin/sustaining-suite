@@ -15,6 +15,15 @@ public class ServerController {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+
+		try {
+			obtainServerLock();
+		} catch (ModuleException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+			// server lock is already held - end execution
+			return;
+		}
 		
 		ServerController controller = new ServerController();
 		
@@ -35,6 +44,14 @@ public class ServerController {
 			e.printStackTrace();
 		}
 
+	}
+
+	private static void obtainServerLock() throws ModuleException {
+		// TODO Auto-generated method stub
+		// try to obtain server lock or throw exception
+		// if it's already held by other server process
+		
+		throw new ModuleException();
 	}
 
 	private void initModules() {

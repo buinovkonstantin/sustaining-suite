@@ -1,4 +1,4 @@
-package client.context;
+package client.model;
 
 public class ClientContextException extends Exception {
 

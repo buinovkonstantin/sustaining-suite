@@ -1,4 +1,4 @@
-package common.params;
+package client.model;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,6 +12,9 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import com.sun.org.apache.xerces.internal.parsers.DOMParser;
+
+import common.params.Params;
+import common.params.ParamsImpl;
 import common.util.FileUtils;
 
 public class RepositoryUtils {
