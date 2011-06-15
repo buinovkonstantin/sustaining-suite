@@ -1,4 +1,4 @@
-package client.view.menu.cluster.dialog;
+package client.view.menu.cluster;
 
 import client.view.CentraStarAnalyzer;
 

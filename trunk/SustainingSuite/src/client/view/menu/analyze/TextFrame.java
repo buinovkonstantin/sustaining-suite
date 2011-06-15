@@ -1,4 +1,4 @@
-package client.view.menu.analyze.dialog;
+package client.view.menu.analyze;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;

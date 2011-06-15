@@ -1,4 +1,4 @@
-package client.view.menu.logging.dialog;
+package client.view.menu.logging;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;

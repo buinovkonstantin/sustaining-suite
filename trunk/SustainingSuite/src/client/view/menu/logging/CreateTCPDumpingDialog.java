@@ -1,4 +1,4 @@
-package client.view.menu.logging.dialog;
+package client.view.menu.logging;
 
 import client.view.CentraStarAnalyzer;
 

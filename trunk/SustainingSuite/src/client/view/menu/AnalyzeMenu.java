@@ -8,9 +8,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 import client.view.CentraStarAnalyzer;
-import client.view.menu.analyze.dialog.Base64Dialog;
-import client.view.menu.analyze.dialog.TextFrame;
-import client.view.menu.analyze.dialog.ZLibCodingDialog;
+import client.view.menu.analyze.Base64Dialog;
+import client.view.menu.analyze.TextFrame;
+import client.view.menu.analyze.ZLibCodingDialog;
 
 
 /**

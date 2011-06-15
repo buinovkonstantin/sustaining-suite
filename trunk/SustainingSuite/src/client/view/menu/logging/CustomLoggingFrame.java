@@ -1,4 +1,4 @@
-package client.view.menu.logging.dialog;
+package client.view.menu.logging;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

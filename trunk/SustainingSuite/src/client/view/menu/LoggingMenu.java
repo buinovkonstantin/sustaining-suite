@@ -7,10 +7,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 import client.view.CentraStarAnalyzer;
-import client.view.menu.logging.dialog.CustomLoggingFrame;
-import client.view.menu.logging.dialog.DownloadDateDialog;
-import client.view.menu.logging.dialog.SearchInLogsDialog;
-import client.view.menu.logging.dialog.TCPDumpingFrame;
+import client.view.menu.logging.CustomLoggingFrame;
+import client.view.menu.logging.DownloadDateDialog;
+import client.view.menu.logging.SearchInLogsDialog;
+import client.view.menu.logging.TCPDumpingFrame;
 
 
 /**

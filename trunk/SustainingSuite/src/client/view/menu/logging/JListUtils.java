@@ -1,4 +1,4 @@
-package client.view.components.jlist;
+package client.view.menu.logging;
 
 import javax.swing.*;
 
