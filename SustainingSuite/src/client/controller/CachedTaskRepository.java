@@ -6,6 +6,10 @@ import client.model.TaskRepository;
 
 public class CachedTaskRepository implements TaskRepository {
 
+	public CachedTaskRepository(TaskRepository taskRepository) {
+		
+	}
+	
 	@Override
 	public int createTask(Task task) {
 		// TODO Auto-generated method stub
