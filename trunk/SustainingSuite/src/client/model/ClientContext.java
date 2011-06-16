@@ -16,6 +16,43 @@ public class ClientContext {
 	private static final String CONNECTION_ADDRESS = "address";
 	private static final String CONNECTION_LOGIN = "login";
 	
+	//TODO remove this hardcode
+	public final static String[] availableLoggers = {
+        "ClusterManager",
+        "ProfileManager",
+        "PoolComponent",
+        "AuthenticationComponent",
+        "GarbageCollectionManager",
+        "GCII",
+        "GlobalIterationCompenent",
+        "ReplicationComponent"
+	};
+
+    public enum logFilterType {
+        message("com.emc.centera.library.logging.filters.MessageFilter"),
+        category("com.emc.centera.library.logging.filters.CategoryFilter"),
+        level("com.emc.centera.library.logging.filters.LevelFilter"),
+        loggerName("com.emc.centera.library.logging.filters.LevelFilter"),
+        transactionOrigin("com.emc.centera.library.logging.filters.QQ"),
+        transactionId("com.emc.centera.library.logging.filters.QQ"),
+        transactionType("com.emc.centera.library.logging.filters.QQ"),
+        threadGroup("com.emc.centera.library.logging.filters.QQ"),
+        threadName("com.emc.centera.library.logging.filters.QQ"),
+        pid("com.emc.centera.library.logging.filters.QQ"),
+        cycles("com.emc.centera.library.logging.filters.QQ"),
+        timestamp("com.emc.centera.library.logging.filters.QQ");
+
+        private final String className;
+
+        logFilterType(String className) {
+            this.className = className;
+        }
+
+        public String getClassName() {
+            return className;
+        }
+    }
+	
 	private static Map<String, ConnectionParams> connectionsParams = null;
 
 	public static Map<String, ConnectionParams> getConnectionsParams() {
