@@ -41,5 +41,67 @@ public class TaskImpl implements Task {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public class StateImpl implements State {
+
+		@Override
+		public String getId() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public int getTotalSteps() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public int getCompleteSteps() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public int getFailedSteps() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+		
+	}
+	
+	public class ResultImpl implements Result {
+
+		@Override
+		public int getId() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public String getNode() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public String getPath() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public int getSize() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public boolean isSuccessful() {
+			// TODO Auto-generated method stub
+			return false;
+		}
+		
+	}
 
 }

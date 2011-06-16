@@ -8,8 +8,8 @@ public class TaskController {
 	private TaskMonitor taskMonitor;
 	private TaskUpdater taskUpdater;
 	
-	public int createTask(Task task) {
-		return 0;
+	public TaskFactory getTaskFactory() {
+		return null;
 	}
 	
 	public Task getTask(int id) {
@@ -23,5 +23,5 @@ public class TaskController {
 	public void unregisterTaskUpdateHandler(int id, TaskUpdateHandler handler) {
 		
 	}
- 
+	
 }
