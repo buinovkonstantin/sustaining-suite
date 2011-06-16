@@ -1,9 +1,9 @@
 package server.modules;
 
-import server.controller.Module;
-import server.controller.ModuleException;
+import common.controller.Module;
+import common.controller.ModuleException;
 
-public class ServerLibraryModule extends Module {
+public class ServerLibraryModule implements Module {
 
 	@Override
 	public void start() throws ModuleException {

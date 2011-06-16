@@ -1,8 +1,6 @@
 package client.view;
 
 
-import javax.swing.*;
-
 import client.view.menu.AnalyzeMenu;
 import client.view.menu.ClusterMenu;
 import client.view.menu.HelpMenu;
@@ -12,25 +10,39 @@ import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
+import common.controller.Module;
+import common.controller.ModuleException;
+import common.controller.ModulesController;
 
 import java.awt.*;
 
-/**
- * Created by IntelliJ IDEA.
- * User: gregory
- * Date: 5/27/11
- * Time: 2:15 AM
- * To change this template use File | Settings | File Templates.
- */
-public class CentraStarAnalyzer extends JFrame {
-    public static CentraStarAnalyzer link;
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+
+public class MainFrame extends JFrame implements Module {
+    public static MainFrame link;
     private JDesktopPane desktop;
-    public CentraStarAnalyzer() throws HeadlessException {
+    private ModulesController controller;
+    
+    public MainFrame(ModulesController controller) throws HeadlessException {
         super("CentraStarAnalyzer");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
+    	this.controller = controller;
+    }
+
+    public Container getDesktop() {
+    	return desktop;
+    }
+    
+	@Override
+	public void start() throws ModuleException {
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setMinimumSize(new Dimension(300, 300));
         JMenuBar menuBar = new JMenuBar();
-        ClusterMenu clusterMenu = new ClusterMenu();
+        ClusterMenu clusterMenu = new ClusterMenu(controller);
         LoggingMenu loggingMenu = new LoggingMenu();
         AnalyzeMenu analyzeMenu = new AnalyzeMenu();
         HelpMenu helpMenu = new HelpMenu();
@@ -57,13 +69,12 @@ public class CentraStarAnalyzer extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         link = this;
-    }
+        
+        new ConnectDialog(this);
+	}
 
-    public static void main(String[] args) {
-        new CentraStarAnalyzer();
-    }
-    
-    public Container getDesktop() {
-    	return desktop;
-    }
+	@Override
+	public void stop() throws ModuleException {
+		dispose();
+	}
 }

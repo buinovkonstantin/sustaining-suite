@@ -1,6 +1,6 @@
 package client.view.menu.logging;
 
-import client.view.CentraStarAnalyzer;
+import client.view.MainFrame;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;
@@ -38,7 +38,7 @@ public class DownloadDateDialog extends JDialog {
     private static String[] columnNames = {"Node", "Path", "Name", "Creation date/time"};
 
     public DownloadDateDialog() {
-    	super(CentraStarAnalyzer.link, "Download data", true);
+    	super(MainFrame.link, "Download data", true);
         nodesField = new JTextField();
         nodesButton = new JButton("Select nodes...");
         nodesButton.addActionListener(new ActionListener() {
@@ -70,7 +70,7 @@ public class DownloadDateDialog extends JDialog {
         downloadButton = new JButton("Download selected data");
         downloadButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	CentraStarAnalyzer.link.getDesktop().add(new DownloadProgressFrame());
+            	MainFrame.link.getDesktop().add(new DownloadProgressFrame());
             	DownloadDateDialog.this.dispose();
             }
         });

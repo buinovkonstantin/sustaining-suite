@@ -19,7 +19,7 @@ import javax.swing.table.TableModel;
 
 import model.logging.LogSink;
 
-import client.view.CentraStarAnalyzer;
+import client.view.MainFrame;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;
@@ -49,7 +49,7 @@ public class CreateCustomLogDialog extends JDialog {
 
 
     public CreateCustomLogDialog() {
-        super(CentraStarAnalyzer.link, "Create Custom log", true);
+        super(MainFrame.link, "Create Custom log", true);
 
         nodesField = new JTextField();
         nodesButton = new JButton("Select nodes...");

@@ -1,6 +1,6 @@
-package server.controller;
+package common.controller;
 
-public abstract class Module {
+public interface Module {
 	
 	public abstract void start() throws ModuleException;
 	

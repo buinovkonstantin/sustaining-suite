@@ -5,13 +5,20 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import common.controller.ModulesController;
+
 import client.view.menu.cluster.ExitDialog;
 import client.view.menu.cluster.SessionsDialog;
 
 
 public class ClusterMenu extends JMenu {
-    public ClusterMenu() {
+	
+    private ModulesController controller;
+
+	public ClusterMenu(ModulesController controller) {
         super("Cluster");
+        
+        this.controller = controller;
         
         // Reconnect Menu item
         add(new JMenuItem("Reconnect"));
@@ -29,7 +36,7 @@ public class ClusterMenu extends JMenu {
         JMenuItem exitMenuItem = new JMenuItem("Exit");
         exitMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new ExitDialog();
+                new ExitDialog(ClusterMenu.this.controller);
             }
         });
         add(exitMenuItem);

@@ -11,7 +11,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JTextField;
 
 
-import client.view.CentraStarAnalyzer;
+import client.view.MainFrame;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
@@ -49,7 +49,7 @@ public class HelpMenu extends JMenu {
     
     private class AboutDialog extends JDialog {
     	public AboutDialog() {
-            super(CentraStarAnalyzer.link, "About Sustaining suite", false);
+            super(MainFrame.link, "About Sustaining suite", false);
             JLabel titleLabel = new JLabel("Sustaining suite v 1.0.31");
             JLabel descriptionLabel1 = new JLabel("Special toolset for sustaining purposes");
             JLabel descriptionLabel2 = new JLabel("applied to EMC Centera product");

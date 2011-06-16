@@ -1,6 +1,6 @@
 package client.view.menu.cluster;
 
-import client.view.CentraStarAnalyzer;
+import client.view.MainFrame;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
@@ -31,7 +31,7 @@ public class SessionsDialog extends JDialog {
     private SessionsTable sessionsTable;
 
     public SessionsDialog() {
-        super(CentraStarAnalyzer.link, "Sessions", false);
+        super(MainFrame.link, "Sessions", false);
         existingSessionsLabel = new JLabel("Existing sessions");
         resumeButton = new JButton("Resume");
         resumeButton.setEnabled(false);

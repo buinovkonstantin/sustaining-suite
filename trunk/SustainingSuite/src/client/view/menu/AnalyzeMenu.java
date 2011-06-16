@@ -7,7 +7,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
-import client.view.CentraStarAnalyzer;
+import client.view.MainFrame;
 import client.view.menu.analyze.Base64Dialog;
 import client.view.menu.analyze.TextFrame;
 import client.view.menu.analyze.ZLibCodingDialog;
@@ -39,7 +39,7 @@ public class AnalyzeMenu extends JMenu {
         JMenuItem smartpacketMenuItem = new JMenuItem("Smart Packet decode");
         smartpacketMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                CentraStarAnalyzer.link.getDesktop().add(new TextFrame("Smart packet content"));
+                MainFrame.link.getDesktop().add(new TextFrame("Smart packet content"));
             }
         });
         add(smartpacketMenuItem);
@@ -49,7 +49,7 @@ public class AnalyzeMenu extends JMenu {
         zlibMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	JFileChooser fileChooser = new JFileChooser();
-            	int retVal = fileChooser.showOpenDialog(CentraStarAnalyzer.link);
+            	int retVal = fileChooser.showOpenDialog(MainFrame.link);
             	if(retVal == JFileChooser.APPROVE_OPTION)
             		new ZLibCodingDialog();
             }

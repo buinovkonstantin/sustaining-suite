@@ -3,7 +3,7 @@ package client.view.menu.logging;
 
 import javax.swing.*;
 
-import client.view.CentraStarAnalyzer;
+import client.view.MainFrame;
 
 /**
  * Created by IntelliJ IDEA.
@@ -14,7 +14,7 @@ import client.view.CentraStarAnalyzer;
  */
 public class FilterDialog extends JDialog {
     public FilterDialog() {
-        super(CentraStarAnalyzer.link, " Filter", true);
+        super(MainFrame.link, " Filter", true);
 
         pack();
         setLocationRelativeTo(null);

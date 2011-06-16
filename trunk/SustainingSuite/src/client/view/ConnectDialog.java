@@ -13,13 +13,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by IntelliJ IDEA.
- * User: gregory
- * Date: 5/27/11
- * Time: 2:59 AM
- * To change this template use File | Settings | File Templates.
- */
 public class ConnectDialog extends JDialog {
     private JButton okButton;
     private JButton cancelButton;
@@ -36,8 +29,8 @@ public class ConnectDialog extends JDialog {
     private JTextField addressField;
     private JTextField loginField;
 
-    public ConnectDialog() throws HeadlessException {
-        super((JFrame) null, "Choose a cluster to connect to");
+    public ConnectDialog(Frame parent) throws HeadlessException {
+        super(parent, "Choose a cluster to connect to", true);
 
         okButton = new JButton("Ok");
         okButton.addActionListener(new ActionListener() {
@@ -46,7 +39,6 @@ public class ConnectDialog extends JDialog {
                 new EnterPasswordDialog(ConnectDialog.this, authResult);
                 if(authResult.isAccept()) {
                     ConnectDialog.this.dispose();
-                    new CentraStarAnalyzer();
                 }
             }
         });
@@ -136,10 +128,6 @@ public class ConnectDialog extends JDialog {
         for(String connectionName : ClientContext.getConnectionsParams().keySet())
         	connectionListModel.addElement(connectionName);
 	}
-
-	public static void main(String[] args) {
-        new ConnectDialog();
-    }
 
     public class AuthResult {
         private boolean accept;

@@ -1,9 +1,9 @@
 package server.modules;
 
-import server.controller.Module;
-import server.controller.ModuleException;
+import common.controller.Module;
+import common.controller.ModuleException;
 
-public class RequestProcessingModule extends Module {
+public class RequestProcessingModule implements Module {
 
 	public RequestProcessingModule(FilesystemModule filesystemModule,
 			JobProcessingModule jobProcessingModule) {
