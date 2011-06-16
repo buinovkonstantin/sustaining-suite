@@ -12,14 +12,6 @@ import client.view.menu.logging.DownloadDateDialog;
 import client.view.menu.logging.SearchInLogsDialog;
 import client.view.menu.logging.TCPDumpingFrame;
 
-
-/**
- * Created by IntelliJ IDEA.
- * User: gregory
- * Date: 5/27/11
- * Time: 2:52 AM
- * To change this template use File | Settings | File Templates.
- */
 public class LoggingMenu extends JMenu {
     public LoggingMenu() {
         super("Logging");

@@ -12,15 +12,6 @@ import client.view.menu.analyze.Base64Dialog;
 import client.view.menu.analyze.TextFrame;
 import client.view.menu.analyze.ZLibCodingDialog;
 
-
-/**
- * Created by IntelliJ IDEA.
- * User: gregory
- * Date: 5/27/11
- * Time: 2:53 AM
- * To change this template use File | Settings | File Templates.
- */
-
 public class AnalyzeMenu extends JMenu {
 
     public AnalyzeMenu() {

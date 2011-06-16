@@ -6,13 +6,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-/**
- * Created by IntelliJ IDEA.
- * User: gregory
- * Date: 5/30/11
- * Time: 4:47 AM
- * To change this template use File | Settings | File Templates.
- */
 public class SessionsTable extends JTable {
 
     private static String[][] exampleOfData = new String[][]{

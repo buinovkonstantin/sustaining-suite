@@ -15,13 +15,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
-/**
- * Created by IntelliJ IDEA.
- * User: gregory
- * Date: 5/30/11
- * Time: 4:26 AM
- * To change this template use File | Settings | File Templates.
- */
 public class SessionsDialog extends JDialog {
 
     private JButton cancelButton;

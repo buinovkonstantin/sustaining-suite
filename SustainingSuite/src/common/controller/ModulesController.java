@@ -7,9 +7,6 @@ import java.util.ListIterator;
 public abstract class ModulesController {
 	private List<Module> modules = new ArrayList<Module>();
 	
-	/**
-	 * @param args
-	 */
 	protected void execute() {
 
 		try {
