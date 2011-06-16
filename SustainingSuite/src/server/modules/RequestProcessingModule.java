@@ -22,4 +22,11 @@ public class RequestProcessingModule extends Module {
 
 	}
 
+	public void registerTaskFactory(String type, TaskFactory factory) {
+		
+	}
+
+	public void unregisterTaskFactory(String type, TaskFactory factory) {
+		
+	}
 }
