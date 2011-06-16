@@ -46,7 +46,7 @@ public class ServerController extends ModulesController {
 		// try to obtain server lock or throw exception
 		// if it's already held by other server process
 		
-		throw new ModuleException();
+		throw new ModuleException("Can't obtain the server lock");
 	}
 
 }
