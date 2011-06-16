@@ -23,9 +23,9 @@ public class ExitDialog extends JDialog {
 	private ModulesController controller;
 
     public ExitDialog(ModulesController controller) {
-        super(MainFrame.link, "Disconnect from cluster", true);
+        super(MainFrame.link, "Exit the program", true);
         this.controller = controller;
-        disconnectInfoLabel = new JLabel("Are you sure you want to disconnect from cluster?");
+        disconnectInfoLabel = new JLabel("Are you sure you want to close the program?");
         serverModuleBox = new JCheckBox("stop server module");
         sessionContextBox = new JCheckBox("remove session context");
         yesButton = new JButton("Yes");
@@ -36,7 +36,6 @@ public class ExitDialog extends JDialog {
 			}
 		});
         noButton = new JButton("No");
-        setTitle("Disconnect from cluster");
         setModal(true);
 
         FormLayout formLayout = new FormLayout("70dlu, 10dlu, 70dlu", "20dlu, 20dlu, 20dlu, 20dlu");

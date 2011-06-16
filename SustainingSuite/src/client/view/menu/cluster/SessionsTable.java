@@ -9,12 +9,12 @@ import javax.swing.event.ListSelectionListener;
 public class SessionsTable extends JTable {
 
     private static String[][] exampleOfData = new String[][]{
-            {"c001n02", "yes", "10.05.2011 13:57:03 UTC", "35 Mb"},
-            {"c001n03", "no", "11.03.2011 10:51:25 UTC", "12 Mb"},
+            {"c001n02", "10.05.2011 13:57:03 UTC", "10.05.2011 17:03:23 UTC", "35 Mb"},
+            {"c001n03", "11.03.2011 10:51:25 UTC", "11.03.2011 11:47:41 UTC", "129 Mb"},
             {"", "", "", ""},
             {"", "", "", ""},
     };
-    private static String[] columnNames = {"Server node", "Active", "Creation date", "Context size"};
+    private static String[] columnNames = {"Server node", "Creation time", "Modification time", "Context size"};
 
     public SessionsTable(JButton resumeButton) {
         //very stupid, only for example
@@ -35,7 +35,7 @@ public class SessionsTable extends JTable {
             int row = getSelectedRow();
             String s = exampleOfData[row][1];
 
-            if(s.contains("yes")) {
+            if(row != -1 && !s.isEmpty()) {
                 this.resumeButton.setEnabled(true);
             } else {
                 this.resumeButton.setEnabled(false);

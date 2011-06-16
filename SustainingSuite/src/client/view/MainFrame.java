@@ -28,7 +28,7 @@ public class MainFrame extends JFrame implements Module {
     private ModulesController controller;
     
     public MainFrame(ModulesController controller) throws HeadlessException {
-        super("CentraStarAnalyzer");
+        super("Centera Sustaining Suite");
         
     	this.controller = controller;
     }

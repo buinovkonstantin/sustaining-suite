@@ -24,7 +24,7 @@ public class DownloadDateDialog extends JDialog {
     JButton downloadButton;
     JButton cancelButton;
     private static Object[][] exampleOfData = new String[][]{
-            {"c001n01", "/var/log", "messages", "2010.09.20 18:48:35"},
+            {"c001n01", "/var/tmp", "tcpdump_17462.pcap", "2010.09.20 18:48:35"},
             {"", "", "", ""},
             {"", "", "", ""},
             {"", "", "", ""},

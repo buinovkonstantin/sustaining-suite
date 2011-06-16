@@ -13,10 +13,10 @@ public class LogFrame extends JInternalFrame {
     private JTable logTable;
 	private JTextField statusField;
     private static Object[][] exampleOfData = new String[][]{
-            {"2009.10.05 23:20:46.082", "c001n09", "WARNING NoCapacity"},
-            {"", "", ""},
-            {"", "", ""},
-            {"", "", ""},
+            {"2010.08.25 16:53:29.427 UTC", "c001n01", "FragmentBlobWriterServerSession: NoCapacity [205992]"},
+            {"2010.08.24 14:39:35.730 UTC", "c001n02", "[RETRY] retry (5) writeblob because Exception"},
+            {"2010.08.24 13:04:20.478 UTC", "c001n02", "[RETRY] retry (0) writeblob because Exception"},
+            {"2010.08.24 00:53:57.004 UTC", "c001n02", "SDK error: errline(1088), errorcode(-10005),systemError(13), errorString(FP_SERVER_ERR), message(WriterException: NoCapacity [1078614]"},
     };
     private static String[] columnNames = {"Time", "Node", "Message"};
     public LogFrame() {

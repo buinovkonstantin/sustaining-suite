@@ -9,7 +9,7 @@ import javax.swing.*;
 public class DownloadProgressFrame extends JInternalFrame {
     JTable downloadTable;
     private static Object[][] exampleOfData = new String[][]{
-            {"c001n05", "/var/log/messages", "58%", "Downloading"},
+            {"c001n01", "/var/tmp/tcpdump_17462.pcap", "58%", "Downloading"},
             {"", "", "", ""},
             {"", "", "", ""},
             {"", "", "", ""},
