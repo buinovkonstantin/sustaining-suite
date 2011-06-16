@@ -3,7 +3,7 @@ package client.view.menu.logging;
 
 import javax.swing.*;
 
-import client.view.CentraStarAnalyzer;
+import client.view.MainFrame;
 
 import java.awt.*;
 
@@ -16,7 +16,7 @@ import java.awt.*;
  */
 public class FileSelectionDialog extends JDialog {
     public FileSelectionDialog() {
-        super(CentraStarAnalyzer.link, "Select files...", true);
+        super(MainFrame.link, "Select files...", true);
 
         setMinimumSize(new Dimension(100, 100));
         add(new JPanel());

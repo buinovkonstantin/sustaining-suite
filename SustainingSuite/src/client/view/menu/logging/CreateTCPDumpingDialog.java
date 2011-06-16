@@ -1,6 +1,6 @@
 package client.view.menu.logging;
 
-import client.view.CentraStarAnalyzer;
+import client.view.MainFrame;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;
@@ -32,7 +32,7 @@ public class CreateTCPDumpingDialog extends JDialog {
     JButton nodeSelectionDialog;
 
     public CreateTCPDumpingDialog() {
-        super(CentraStarAnalyzer.link, "Create new TCP dumping", true);
+        super(MainFrame.link, "Create new TCP dumping", true);
         nodesField = new JTextField();
         nodeSelectionDialog = new JButton("Select nodes...");
         nodeSelectionDialog.addActionListener(new ActionListener() {

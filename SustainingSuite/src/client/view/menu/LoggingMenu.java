@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
-import client.view.CentraStarAnalyzer;
+import client.view.MainFrame;
 import client.view.menu.logging.CustomLoggingFrame;
 import client.view.menu.logging.DownloadDateDialog;
 import client.view.menu.logging.SearchInLogsDialog;
@@ -37,7 +37,7 @@ public class LoggingMenu extends JMenu {
         JMenuItem customMenuItem = new JMenuItem("Custom Logging...");
         customMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	CentraStarAnalyzer.link.getDesktop().add(new CustomLoggingFrame());
+            	MainFrame.link.getDesktop().add(new CustomLoggingFrame());
             }
         });
         add(customMenuItem);
@@ -46,7 +46,7 @@ public class LoggingMenu extends JMenu {
         JMenuItem tcpdumpingMenuItem = new JMenuItem("TCP dumping...");
         tcpdumpingMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	CentraStarAnalyzer.link.getDesktop().add(new TCPDumpingFrame());
+            	MainFrame.link.getDesktop().add(new TCPDumpingFrame());
             }
         });
         add(tcpdumpingMenuItem);

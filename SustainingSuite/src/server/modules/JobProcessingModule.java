@@ -1,9 +1,9 @@
 package server.modules;
 
-import server.controller.Module;
-import server.controller.ModuleException;
+import common.controller.Module;
+import common.controller.ModuleException;
 
-public class JobProcessingModule extends Module {
+public class JobProcessingModule implements Module {
 
 	public JobProcessingModule(FilesystemModule filesystemModule) {
 		// TODO Auto-generated constructor stub

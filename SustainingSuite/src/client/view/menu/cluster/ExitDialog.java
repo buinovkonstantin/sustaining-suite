@@ -1,19 +1,17 @@
 package client.view.menu.cluster;
 
-import client.view.CentraStarAnalyzer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import client.view.MainFrame;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
+import common.controller.ModulesController;
+
 import javax.swing.*;
 
-/**
- * Created by IntelliJ IDEA.
- * User: gregory
- * Date: 5/30/11
- * Time: 3:41 AM
- * To change this template use File | Settings | File Templates.
- */
 public class ExitDialog extends JDialog {
 
     private JCheckBox serverModuleBox;
@@ -21,13 +19,22 @@ public class ExitDialog extends JDialog {
     private JLabel disconnectInfoLabel;
     private JButton yesButton;
     private JButton noButton;
+    
+	private ModulesController controller;
 
-    public ExitDialog() {
-        super(CentraStarAnalyzer.link, "Disconnect from cluster", true);
+    public ExitDialog(ModulesController controller) {
+        super(MainFrame.link, "Disconnect from cluster", true);
+        this.controller = controller;
         disconnectInfoLabel = new JLabel("Are you sure you want to disconnect from cluster?");
         serverModuleBox = new JCheckBox("stop server module");
         sessionContextBox = new JCheckBox("remove session context");
         yesButton = new JButton("Yes");
+        yesButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ExitDialog.this.controller.stop();
+			}
+		});
         noButton = new JButton("No");
         setTitle("Disconnect from cluster");
         setModal(true);

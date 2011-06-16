@@ -1,10 +1,11 @@
 package server.modules;
 
-import server.controller.Module;
-import server.controller.ModuleException;
+import common.controller.Module;
+import common.controller.ModuleException;
+
 import server.controller.ServerController;
 
-public class FactoriesModule extends Module {
+public class FactoriesModule implements Module {
 
 	public FactoriesModule(ServerController serverController, ServerLibraryModule serverLibraryModule,
 			FilesystemModule filesystemModule,

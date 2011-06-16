@@ -1,6 +1,6 @@
 package client.view.menu.logging;
 
-import client.view.CentraStarAnalyzer;
+import client.view.MainFrame;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;
@@ -26,7 +26,7 @@ public class NodeSelectionDialog extends JDialog {
     JButton cancelButton;
 
     public NodeSelectionDialog() {
-        super(CentraStarAnalyzer.link, "Select nodes", true);
+        super(MainFrame.link, "Select nodes", true);
         nodesSetBox = new JComboBox(new String[] {"None", "Custom", "All"});
         nodesSetBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

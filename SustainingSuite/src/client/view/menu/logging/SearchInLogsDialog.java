@@ -1,6 +1,6 @@
 package client.view.menu.logging;
 
-import client.view.CentraStarAnalyzer;
+import client.view.MainFrame;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;
@@ -31,7 +31,7 @@ public class SearchInLogsDialog extends JDialog {
     JButton searchButton;
     JButton cancelButton;
     public SearchInLogsDialog() {
-        super(CentraStarAnalyzer.link, "Search in logs", false);
+        super(MainFrame.link, "Search in logs", false);
         fromDateField = new JTextField();
         toDateField = new JTextField();
         nodesField = new JTextField();
@@ -49,7 +49,7 @@ public class SearchInLogsDialog extends JDialog {
         searchButton.setEnabled(false);
         searchButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                CentraStarAnalyzer.link.getDesktop().add(new LogFrame());
+                MainFrame.link.getDesktop().add(new LogFrame());
                 SearchInLogsDialog.this.dispose();
             }
         });

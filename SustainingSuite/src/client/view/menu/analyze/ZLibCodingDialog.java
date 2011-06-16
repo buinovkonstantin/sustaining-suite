@@ -3,7 +3,7 @@ package client.view.menu.analyze;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import client.view.CentraStarAnalyzer;
+import client.view.MainFrame;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
@@ -27,7 +27,7 @@ public class ZLibCodingDialog extends JDialog {
     JButton cancelButton;
 
     public ZLibCodingDialog() {
-        super(CentraStarAnalyzer.link, "ZLib coding", false);
+        super(MainFrame.link, "ZLib coding", false);
         selectLabel = new JLabel("Select processing type");
         zLibEncodeButton = new JRadioButton("ZLib encode data");
         zLibDecodeButton = new JRadioButton("ZLib decode data");;

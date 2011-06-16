@@ -1,6 +1,6 @@
 package client.view.menu.analyze;
 
-import client.view.CentraStarAnalyzer;
+import client.view.MainFrame;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
@@ -26,7 +26,7 @@ public class Base64Dialog extends JDialog {
     JButton encodeAndSaveButton;
 
     public Base64Dialog() {
-        super(CentraStarAnalyzer.link, "Base64", false);
+        super(MainFrame.link, "Base64", false);
         encodedOpenButton = new JButton("Open encoded file...");
         encodedArea = new JTextArea(10,20);
         decodeButton = new JButton("Decode");
