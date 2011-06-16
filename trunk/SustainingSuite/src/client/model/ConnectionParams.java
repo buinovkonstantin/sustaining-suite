@@ -1,12 +1,5 @@
 package client.model;
 
-/**
- * Created by IntelliJ IDEA.
- * User: gregory
- * Date: 5/30/11
- * Time: 5:26 AM
- * To change this template use File | Settings | File Templates.
- */
 public class ConnectionParams {
     private String connectionName;
     private String address;
