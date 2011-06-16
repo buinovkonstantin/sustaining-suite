@@ -1,6 +1,7 @@
 package client.controller;
 
-import common.protocol.Task;
+import client.model.ConnectionContext;
+import client.model.ConnectionParams;
 
 public class ConnectionController {
 
@@ -12,6 +13,14 @@ public class ConnectionController {
 	
 	public void unregisterHandler(ConnectionUpdateHandler handler) {
 		connectionMonitor.unregisterHandler(handler);
+	}
+	
+	public ConnectionContext establishConnection(ConnectionParams connectionParams) {
+		return null;
+	}
+	
+	public void disconnect(ConnectionContext connection) {
+		
 	}
 	
 }

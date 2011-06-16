@@ -1,4 +1,4 @@
-package client.view.menu.logging;
+package client.view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +13,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
-import client.view.MainFrame;
+import client.view.menu.logging.JCheckBoxListRenderer;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;
@@ -27,7 +27,7 @@ public class NodeSelectionDialog extends JDialog {
 
     public NodeSelectionDialog() {
         super(MainFrame.link, "Select nodes", true);
-        nodesSetBox = new JComboBox(new String[] {"None", "Custom", "All"});
+        nodesSetBox = new JComboBox(NodeList.Preset.values());
         nodesSetBox.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 nodesSetBoxStateChanged();

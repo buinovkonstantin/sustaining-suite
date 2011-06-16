@@ -1,6 +1,7 @@
 package client.view.menu.logging;
 
 import client.view.MainFrame;
+import client.view.NodeSelectionDialog;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;

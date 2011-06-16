@@ -109,12 +109,4 @@ public class RepositoryUtils {
 			}
 		}
 	}
-	
-	public static void main(String[] args) {
-		
-		System.out.println(FileUtils.getApplicationDirectoryPath());
-		System.out.println(getRepositoryDirectoryPath());
-		System.out.print(getRepository("clusters.connections"));
-
-    }
 }
