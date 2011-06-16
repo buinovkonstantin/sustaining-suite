@@ -1,4 +1,4 @@
-package client.model.tasks;
+package common.protocol.tasks;
 
 import common.protocol.TaskImpl;
 

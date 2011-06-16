@@ -132,9 +132,4 @@ public class ClientContext {
 
 		RepositoryUtils.persistRepository(CONNECTIONS_REPOSITORY, newRepositoryContent);
 	}
-	
-    public static void main(String[] args) {
-    	System.out.println(getConnectionsParams());
-    }
-	
 }

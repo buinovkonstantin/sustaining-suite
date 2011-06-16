@@ -6,7 +6,21 @@ import client.library.Node;
 
 public class ConnectionContext {
 
-	public enum State { Disconnected, Connected, Aborted };
+	public enum State {
+		Disconnected(false),
+		Connected(true),
+		Aborted(false);
+		
+		private final boolean isConnected;
+		
+		private State(boolean isConnected) {
+			this.isConnected = isConnected;
+		}
+		
+		public boolean isConnected() {
+			return isConnected;
+		}
+	};
 	
 	private ConnectionParams connectionParams;
 	

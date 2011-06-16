@@ -19,11 +19,13 @@ import javax.swing.table.TableModel;
 
 import client.model.ClientContext;
 import client.view.MainFrame;
+import client.view.NodeSelectionDialog;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;
 import com.jgoodies.forms.layout.FormLayout;
-import common.protocol.Log;
+
+import common.protocol.tasks.Log;
 
 public class CreateCustomLogDialog extends JDialog {
     JTextField nodesField;

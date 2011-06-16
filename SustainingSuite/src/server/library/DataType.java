@@ -1,4 +1,4 @@
-package common.protocol;
+package server.library;
 
 public class DataType {
 
