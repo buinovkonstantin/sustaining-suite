@@ -17,13 +17,13 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import model.logging.LogSink;
-
+import client.model.ClientContext;
 import client.view.MainFrame;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;
 import com.jgoodies.forms.layout.FormLayout;
+import common.protocol.Log;
 
 /**
  * Created by IntelliJ IDEA.
@@ -58,8 +58,8 @@ public class CreateCustomLogDialog extends JDialog {
                 new NodeSelectionDialog();
             }
         });
-        statusBox = new JComboBox(LogSink.Level.values());
-        componentsList = JListUtils.createCheckBoxesList(LogSink.Component.values());
+        statusBox = new JComboBox(Log.Level.values());
+        componentsList = JListUtils.createCheckBoxesList(ClientContext.availableLoggers);
         //TODO       methods \/ refactor to /\ method
         componentsList.setCellRenderer(new JCheckBoxListRenderer());
         componentsList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -79,14 +79,14 @@ public class CreateCustomLogDialog extends JDialog {
         TableModel model = filterTable.getModel();
         ((DefaultTableModel)model).addColumn("Type");
         ((DefaultTableModel)model).addColumn("Value");
-        filterTable.getColumnModel().getColumn(0).setCellEditor(new JComboBoxEditor(new JComboBox(LogSink.logFilterType.values())));
-        filterTable.getColumnModel().getColumn(0).setCellRenderer(new JComboBoxCellRenderer(LogSink.logFilterType.values()));
-        ((DefaultTableModel)model).addRow(new Object[] {LogSink.logFilterType.message, "NoCapacity"});
+        filterTable.getColumnModel().getColumn(0).setCellEditor(new JComboBoxEditor(new JComboBox(ClientContext.logFilterType.values())));
+        filterTable.getColumnModel().getColumn(0).setCellRenderer(new JComboBoxCellRenderer(ClientContext.logFilterType.values()));
+        ((DefaultTableModel)model).addRow(new Object[] {ClientContext.logFilterType.message, "NoCapacity"});
 
         addFilterButton = new JButton("Add...");
         addFilterButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                ((DefaultTableModel)filterTable.getModel()).addRow(new Object[] {LogSink.logFilterType.message, ""});
+                ((DefaultTableModel)filterTable.getModel()).addRow(new Object[] {ClientContext.logFilterType.message, ""});
             }
         });
         removeFilterButton = new JButton("Remove");
