@@ -11,13 +11,6 @@ import com.jgoodies.forms.layout.FormLayout;
 
 import javax.swing.*;
 
-/**
- * Created by IntelliJ IDEA.
- * User: skripg
- * Date: 6/1/11
- * Time: 12:20 PM
- * To change this template use File | Settings | File Templates.
- */
 public class ZLibCodingDialog extends JDialog {
     JLabel selectLabel;
     JRadioButton zLibEncodeButton;

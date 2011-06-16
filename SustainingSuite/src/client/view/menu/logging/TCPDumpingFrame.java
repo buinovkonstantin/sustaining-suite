@@ -1,20 +1,19 @@
 package client.view.menu.logging;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-/**
- * Created by IntelliJ IDEA.
- * User: skripg
- * Date: 5/31/11
- * Time: 8:18 PM
- * To change this template use File | Settings | File Templates.
- */
 public class TCPDumpingFrame extends JInternalFrame {
     JLabel tcpDumpLabel;
     JTable tcpDumpsTable;

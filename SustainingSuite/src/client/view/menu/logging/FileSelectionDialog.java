@@ -1,19 +1,12 @@
 package client.view.menu.logging;
 
+import java.awt.Dimension;
 
-import javax.swing.*;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
 
 import client.view.MainFrame;
 
-import java.awt.*;
-
-/**
- * Created by IntelliJ IDEA.
- * User: skripg
- * Date: 5/31/11
- * Time: 7:53 PM
- * To change this template use File | Settings | File Templates.
- */
 public class FileSelectionDialog extends JDialog {
     public FileSelectionDialog() {
         super(MainFrame.link, "Select files...", true);

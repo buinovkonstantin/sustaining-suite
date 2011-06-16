@@ -1,17 +1,14 @@
 package client.view.menu.analyze;
 
+import javax.swing.JInternalFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
-import javax.swing.*; /**
- * Created by IntelliJ IDEA.
- * User: skripg
- * Date: 6/2/11
- * Time: 7:11 PM
- * To change this template use File | Settings | File Templates.
- */
 public class TextFrame extends JInternalFrame {
     JTextArea area;
     public TextFrame(String name) {

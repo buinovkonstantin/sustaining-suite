@@ -25,13 +25,6 @@ import com.jgoodies.forms.factories.CC;
 import com.jgoodies.forms.layout.FormLayout;
 import common.protocol.Log;
 
-/**
- * Created by IntelliJ IDEA.
- * User: skripg
- * Date: 6/6/11
- * Time: 1:45 PM
- * To change this template use File | Settings | File Templates.
- */
 public class CreateCustomLogDialog extends JDialog {
     JTextField nodesField;
     JButton nodesButton;

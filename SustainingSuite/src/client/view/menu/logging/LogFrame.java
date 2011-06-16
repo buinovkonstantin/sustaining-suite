@@ -1,18 +1,14 @@
 package client.view.menu.logging;
 
+import javax.swing.JInternalFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
-import javax.swing.*;
-
-/**
- * Created by IntelliJ IDEA.
- * User: skripg
- * Date: 6/6/11
- * Time: 1:28 PM
- * To change this template use File | Settings | File Templates.
- */
 public class LogFrame extends JInternalFrame {
     private JTable logTable;
 	private JTextField statusField;

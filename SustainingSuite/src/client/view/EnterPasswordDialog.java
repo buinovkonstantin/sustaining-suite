@@ -12,13 +12,6 @@ import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Григорий
- * Date: 30.05.11
- * Time: 21:35
- * To change this template use File | Settings | File Templates.
- */
 public class EnterPasswordDialog extends JDialog {
     private JButton okButton;
     private JButton cancelButton;

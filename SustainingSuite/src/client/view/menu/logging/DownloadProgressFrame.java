@@ -6,13 +6,6 @@ import com.jgoodies.forms.layout.FormLayout;
 
 import javax.swing.*;
 
-/**
- * Created by IntelliJ IDEA.
- * User: skripg
- * Date: 6/1/11
- * Time: 5:30 PM
- * To change this template use File | Settings | File Templates.
- */
 public class DownloadProgressFrame extends JInternalFrame {
     JTable downloadTable;
     private static Object[][] exampleOfData = new String[][]{
