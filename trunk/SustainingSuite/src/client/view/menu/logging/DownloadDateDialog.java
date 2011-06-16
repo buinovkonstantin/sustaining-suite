@@ -13,13 +13,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-/**
- * Created by IntelliJ IDEA.
- * User: skripg
- * Date: 5/31/11
- * Time: 7:49 PM
- * To change this template use File | Settings | File Templates.
- */
 public class DownloadDateDialog extends JDialog {
     JTextField nodesField;
     JButton nodesButton;

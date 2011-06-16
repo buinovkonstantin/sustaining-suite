@@ -1,14 +1,9 @@
 package client.view.menu.logging;
 
-import javax.swing.*;
+import javax.swing.DefaultListModel;
+import javax.swing.JCheckBox;
+import javax.swing.JList;
 
-/**
- * Created by IntelliJ IDEA.
- * User: skripg
- * Date: 6/7/11
- * Time: 4:09 PM
- * To change this template use File | Settings | File Templates.
- */
 public class JListUtils {
 
     /**

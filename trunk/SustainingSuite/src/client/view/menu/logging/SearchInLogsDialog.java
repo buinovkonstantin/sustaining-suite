@@ -1,22 +1,20 @@
 package client.view.menu.logging;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
 import client.view.MainFrame;
 
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.factories.CC;
 import com.jgoodies.forms.layout.FormLayout;
 
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-/**
- * Created by IntelliJ IDEA.
- * User: skripg
- * Date: 6/2/11
- * Time: 5:49 PM
- * To change this template use File | Settings | File Templates.
- */
 public class SearchInLogsDialog extends JDialog {
 
     JTextField fromDateField;

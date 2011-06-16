@@ -1,17 +1,10 @@
 package client.view.menu.logging;
 
 
-import javax.swing.*;
+import javax.swing.JDialog;
 
 import client.view.MainFrame;
 
-/**
- * Created by IntelliJ IDEA.
- * User: skripg
- * Date: 5/31/11
- * Time: 8:16 PM
- * To change this template use File | Settings | File Templates.
- */
 public class FilterDialog extends JDialog {
     public FilterDialog() {
         super(MainFrame.link, " Filter", true);

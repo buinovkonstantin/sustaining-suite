@@ -12,19 +12,9 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by IntelliJ IDEA.
- * User: skripg
- * Date: 6/1/11
- * Time: 6:00 PM
- * To change this template use File | Settings | File Templates.
- */
 public class CreateTCPDumpingDialog extends JDialog {
-//    JLabel nodesLabel;
 
-//    JLabel networkLabel;
     JComboBox interfaceBox;
-//    JLabel filterLabel;
     JTextField filterField;
     JButton createButton;
     JButton cancelButton;

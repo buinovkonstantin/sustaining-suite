@@ -17,13 +17,6 @@ import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
-/**
- * Created by IntelliJ IDEA.
- * User: skripg
- * Date: 5/31/11
- * Time: 8:07 PM
- * To change this template use File | Settings | File Templates.
- */
 public class CustomLoggingFrame extends JInternalFrame {
     private JLabel logsLabel;
     private JTable logsTable;

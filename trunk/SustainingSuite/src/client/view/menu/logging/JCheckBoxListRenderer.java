@@ -1,15 +1,11 @@
 package client.view.menu.logging;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
 
-/**
-* Created by IntelliJ IDEA.
-* User: skripg
-* Date: 6/6/11
-* Time: 6:25 PM
-* To change this template use File | Settings | File Templates.
-*/
+import javax.swing.JCheckBox;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
+
 public class JCheckBoxListRenderer extends JCheckBox implements ListCellRenderer {
     public Component getListCellRendererComponent(JList list, Object value, int index,boolean isSelected, boolean hasFocus) {
         setEnabled(list.isEnabled());
