@@ -59,7 +59,8 @@ public class SearchInLogsDialog extends JDialog {
         platformBox.addActionListener(logTypeActionListener);
         osBox.addActionListener(logTypeActionListener);
 
-        FormLayout formLayout = new FormLayout("60dlu, 5dlu, 60dlu, 5dlu, 60dlu,", "20dlu, 20dlu, 20dlu, 20dlu, 20dlu, 20dlu, 20dlu, 20dlu, 20dlu, 20dlu, 20dlu, 20dlu, 20dlu, 20dlu");
+        FormLayout formLayout = new FormLayout("60dlu, 5dlu, 60dlu, 5dlu, 60dlu,",
+        		"20px,15px,20px, 15px, 20px,20px, 15px, 15px,20px, 15px, 15px,15px,20px, 15px, 20px");
         PanelBuilder panelBuilder = new PanelBuilder(formLayout);
         panelBuilder.setDefaultDialogBorder();
         panelBuilder.addSeparator("Time interval", CC.xyw(1, 1, 5));
@@ -75,8 +76,8 @@ public class SearchInLogsDialog extends JDialog {
         panelBuilder.addSeparator("Search pattern", CC.xyw(1, 11, 5));
         panelBuilder.add(patternBox, CC.xyw(1, 12, 5, CC.LEFT, CC.CENTER));
         panelBuilder.add(expressionField, CC.xyw(1, 13, 5, CC.FILL, CC.FILL));
-        panelBuilder.add(searchButton, CC.xy(1,14, CC.CENTER, CC.CENTER));
-        panelBuilder.add(cancelButton, CC.xy(5,14, CC.CENTER, CC.CENTER));
+        panelBuilder.add(searchButton, CC.xy(1,15, CC.CENTER, CC.CENTER));
+        panelBuilder.add(cancelButton, CC.xy(5,15, CC.CENTER, CC.CENTER));
         add(panelBuilder.getPanel());
         pack();
         setLocationRelativeTo(null);
