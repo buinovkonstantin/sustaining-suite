@@ -32,7 +32,7 @@ public interface Task {
 	
 	public interface State {
 		
-		public enum Name { Pending, Initial, Runnin, Complete, Aborted };
+		public enum Name { Pending, Initial, Running, Complete, Aborted };
 		
 		public void setName(Name name);
 		public Name getName();

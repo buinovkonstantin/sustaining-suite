@@ -2,7 +2,7 @@ package client.controller;
 
 import java.util.Collection;
 
-public class ConnectionMonitor {
+public class ConnectionMonitor implements Runnable {
 
 	private Collection<ConnectionUpdateHandler> handlers;
 	
@@ -16,5 +16,11 @@ public class ConnectionMonitor {
 	
 	public void unregisterHandler(ConnectionUpdateHandler handler) {
 		handlers.remove(handler);
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 }
