@@ -11,6 +11,12 @@ public class ConnectionParams {
     	this.login = login;
 	}
 
+	public ConnectionParams(ConnectionParams connectionParams) {
+		this.connectionName = connectionParams.getConnectionName();
+		this.address = connectionParams.getAddress();
+		this.login = connectionParams.getLogin();
+	}
+
 	public String getConnectionName() {
         return connectionName;
     }

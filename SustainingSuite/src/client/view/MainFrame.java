@@ -1,6 +1,7 @@
 package client.view;
 
 
+import client.controller.ConnectionController;
 import client.view.menu.AnalyzeMenu;
 import client.view.menu.ClusterMenu;
 import client.view.menu.HelpMenu;
@@ -26,11 +27,13 @@ public class MainFrame extends JFrame implements Module {
     public static MainFrame link;
     private JDesktopPane desktop;
     private ModulesController controller;
+	private ConnectionController connectionController;
     
-    public MainFrame(ModulesController controller) throws HeadlessException {
+    public MainFrame(ModulesController controller, ConnectionController connectionController) throws HeadlessException {
         super("Centera Sustaining Suite");
         
     	this.controller = controller;
+    	this.connectionController = connectionController;
     }
 
     public Container getDesktop() {
@@ -70,7 +73,7 @@ public class MainFrame extends JFrame implements Module {
         setVisible(true);
         link = this;
         
-        new ConnectDialog(this);
+        new ConnectDialog(this, connectionController);
 	}
 
 	@Override

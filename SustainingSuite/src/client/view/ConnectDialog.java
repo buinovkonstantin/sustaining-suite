@@ -1,5 +1,7 @@
 package client.view;
 
+import client.controller.ConnectionController;
+import client.library.ClientUserInterface;
 import client.model.ClientContext;
 import client.model.ClientContextException;
 import client.model.ConnectionParams;
@@ -28,16 +30,25 @@ public class ConnectDialog extends JDialog {
     private JButton removeButton;
     private JTextField addressField;
     private JTextField loginField;
+    
+	private ConnectionController connectionController;
 
-    public ConnectDialog(Frame parent) throws HeadlessException {
+    public ConnectDialog(Frame parent, ConnectionController connectionController) throws HeadlessException {
         super(parent, "Choose a cluster to connect to", true);
+        
+        this.connectionController = connectionController;
 
         okButton = new JButton("Ok");
         okButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                AuthResult authResult = new AuthResult();
-                new EnterPasswordDialog(ConnectDialog.this, authResult);
-                if(authResult.isAccept()) {
+                EnterPasswordDialog passwordDialog = 
+                	new EnterPasswordDialog(ConnectDialog.this);
+                if(passwordDialog.getPassword() != null &&
+                		ConnectDialog.this.getSelectedConnectionParams() != null) {
+                	ConnectDialog.this.connectionController.establishConnection(
+                			ConnectDialog.this.getSelectedConnectionParams(),
+                			passwordDialog.getPassword(),
+                			new ConnectionClientUserInterface(ConnectDialog.this));
                     ConnectDialog.this.dispose();
                 }
             }
@@ -122,25 +133,48 @@ public class ConnectDialog extends JDialog {
         setVisible(true);
     }
 
-    private void updateConnectionListModel() {
+    private ConnectionParams getSelectedConnectionParams() {
+    	if(addressField.getText().isEmpty() || loginField.getText().isEmpty()) {
+    		// incomplete manually entered information - try to get selected
+    		// connection from list
+			String selectedConnection = (String) connectionList.getSelectedValue();
+    		if(selectedConnection != null) {
+    			// connection is selected in list - try to get its params
+    			return ClientContext.getConnectionsParams().get(selectedConnection);
+    		}
+    		
+    		return null;
+    	}
+
+    	// combine manually entered connection info
+    	return new ConnectionParams(null, addressField.getText(), loginField.getText());
+	}
+
+	private void updateConnectionListModel() {
     	connectionListModel.clear();
     	
         for(String connectionName : ClientContext.getConnectionsParams().keySet())
         	connectionListModel.addElement(connectionName);
 	}
+	
+	private class ConnectionClientUserInterface implements ClientUserInterface {
 
-    public class AuthResult {
-        private boolean accept;
-        private AuthResult() {
-        }
+		private Component parent;
 
-        public boolean isAccept() {
-            return accept;
-        }
+		public ConnectionClientUserInterface(Component parent) {
+			this.parent = parent;
+		}
+		
+		@Override
+		public void showMessage(String message) {
+			JOptionPane.showMessageDialog(parent, message);
+		}
 
-        public void setAccept(boolean accept) {
-            this.accept = accept;
-        }
-    }
+		@Override
+		public boolean promptYesNo(String message) {
+			return (JOptionPane.showConfirmDialog(parent, message) == JOptionPane.YES_OPTION);
+		}
+		
+	}
 
 }
