@@ -7,5 +7,6 @@
 	<classpathentry kind="lib" path="libs/jgoodies-forms-1.4.1.jar"/>
 	<classpathentry kind="lib" path="libs/junit-4.8.2.jar"/>
 	<classpathentry kind="lib" path="libs/easymock-3.0.jar"/>
+	<classpathentry kind="lib" path="private_libs/jsch-0.1.44.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

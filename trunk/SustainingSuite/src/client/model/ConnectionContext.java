@@ -1,11 +1,12 @@
 package client.model;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 import client.library.Node;
 
 public class ConnectionContext {
-
+	
 	public enum State {
 		Disconnected(false),
 		Connected(true),
@@ -24,7 +25,7 @@ public class ConnectionContext {
 	
 	private ConnectionParams connectionParams;
 	
-	private String password;
+	private char[] password = new char[0];
 	
 	private State state;
 	
@@ -34,19 +35,25 @@ public class ConnectionContext {
 	
 	private Collection<Node> nodes;
 
+	public ConnectionContext() {
+		state = State.Disconnected;
+	}
+
 	public void setConnectionParams(ConnectionParams connectionParams) {
-		this.connectionParams = connectionParams;
+		this.connectionParams = new ConnectionParams(connectionParams);
 	}
 
 	public ConnectionParams getConnectionParams() {
 		return connectionParams;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(char[] password) {
+		for(int i=0; i<this.password.length; i++)
+			this.password[i] = 0;
+		this.password = Arrays.copyOf(password, password.length);
 	}
 
-	public String getPassword() {
+	public char[] getPassword() {
 		return password;
 	}
 

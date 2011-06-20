@@ -16,20 +16,22 @@ public class EnterPasswordDialog extends JDialog {
     private JButton okButton;
     private JButton cancelButton;
     private JPasswordField passwordField;
+    
+    private char[] password;
 
-    public EnterPasswordDialog(Dialog owner, final ConnectDialog.AuthResult authResult) {
+    public EnterPasswordDialog(Dialog owner) {
         super(owner, "Enter password", true);
         okButton = new JButton("Ok");
         okButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                authResult.setAccept(true);
+            	password = passwordField.getPassword();
                 dispose();
             }
         });
         cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                authResult.setAccept(false);
+            	password = null;
                 dispose();
             }
         });
@@ -49,5 +51,9 @@ public class EnterPasswordDialog extends JDialog {
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
+    }
+    
+    public char[] getPassword() {
+    	return password;
     }
 }

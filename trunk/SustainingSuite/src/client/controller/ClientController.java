@@ -19,7 +19,13 @@ public class ClientController extends ModulesController {
 	@Override
 	protected void initModules() throws ModuleException {
 
-		MainFrame mainFrameModule = new MainFrame(this);
+		ClientLibraryModule clientLibraryModule = new ClientLibraryModule();
+		add(clientLibraryModule);
+		ConnectionController connectionController = new ConnectionController(clientLibraryModule);
+		add(connectionController);
+		TaskController taskController = new TaskController(connectionController);
+		add(taskController);
+		MainFrame mainFrameModule = new MainFrame(this, connectionController);
 		add(mainFrameModule);
 	}
 
