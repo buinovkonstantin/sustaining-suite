@@ -34,7 +34,19 @@ public class ConnectionController implements Module {
 		return context;
 	}
 	
-	public void establishConnection(ConnectionParams connectionParams, char[] password, ClientUserInterface userInterface) {
+	public void establishConnection(ConnectionParams connectionParams, 
+			char[] password, ClientUserInterface userInterface) {
+		/* establish connection
+		 * - disconnect
+		 * - setParams
+		 * - jschSession.connect
+		 * - get server (FPv, srv_ver, work_dir)
+		 * - if srv is absent
+		 *   - get best dir
+		 *   - upload
+		 *   - run with lock (SustainingSuiteServer.jar <work_dir>)
+		 *   - get version
+		 */
 		if(context.getState().isConnected())
 			disconnect();
 		
