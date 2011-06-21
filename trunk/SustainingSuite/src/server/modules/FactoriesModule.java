@@ -25,6 +25,10 @@ public class FactoriesModule implements Module {
 	@Override
 	public void start() throws ModuleException {
 		initializeFactories();
+		
+		for(String factoryType : factories.keySet()) {
+			requestProcessingModule.registerTaskFactory(factoryType, factories.get(factoryType));
+		}
 		// TODO Auto-generated method stub
 		
 	}
@@ -32,12 +36,16 @@ public class FactoriesModule implements Module {
 	private void initializeFactories() {
 		// TODO Auto-generated method stub
 		
+		// available commands depends on server version
 	}
 
 	@Override
 	public void stop() throws ModuleException {
 		// TODO Auto-generated method stub
 		
+		for(String factoryType : factories.keySet()) {
+			requestProcessingModule.unregisterTaskFactory(factoryType);
+		}
 	}
 
 }

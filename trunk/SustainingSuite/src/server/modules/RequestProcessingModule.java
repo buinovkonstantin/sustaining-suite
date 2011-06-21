@@ -34,8 +34,8 @@ public class RequestProcessingModule implements Module, Runnable {
 		factories.put(type, factory);
 	}
 
-	public void unregisterTaskFactory(String type, TaskFactory factory) {
-		
+	public void unregisterTaskFactory(String type) {
+		factories.remove(type);
 	}
 
 	@Override
