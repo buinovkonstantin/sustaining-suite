@@ -1,11 +1,15 @@
 package server.controller;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import server.modules.FactoriesModule;
 import server.modules.FilesystemModule;
 import server.modules.JobProcessingModule;
 import server.modules.RequestProcessingModule;
 import server.modules.ServerLibraryModule;
 
+import common.controller.Module;
 import common.controller.ModuleException;
 import common.controller.ModulesController;
 
@@ -18,35 +22,43 @@ public class ServerController extends ModulesController {
 
 		ServerController controller = new ServerController();
 
-		controller.execute();
+		controller.start();
 	}
 
 	@Override
-	protected void initModules() throws ModuleException {
+	protected void init() throws ModuleException {
 		obtainServerLock();
+	}
+	
+	@Override
+	protected Collection<? extends Module> getModules() throws ModuleException {
+		Collection<Module> modules = new ArrayList<Module>();
 		
 		ServerLibraryModule serverLibraryModule = new ServerLibraryModule();
-		add(serverLibraryModule);
+		modules.add(serverLibraryModule);
 		
 		FilesystemModule filesystemModule = new FilesystemModule();
-		add(filesystemModule);
+		modules.add(filesystemModule);
 		
 		JobProcessingModule jobProcessingModule = new JobProcessingModule(filesystemModule);
-		add(jobProcessingModule);
+		modules.add(jobProcessingModule);
 		
 		RequestProcessingModule requestProcessingModule = new RequestProcessingModule(filesystemModule, jobProcessingModule);
-		add(requestProcessingModule);
+		modules.add(requestProcessingModule);
 		
 		FactoriesModule factoriesModule = new FactoriesModule(this, serverLibraryModule, filesystemModule, requestProcessingModule);
-		add(factoriesModule);
+		modules.add(factoriesModule);
+		
+		return modules;
 	}
 
+	/*
+	 * It's only allowed to run single instance of server component
+	 * on a node. Second instance must not start.
+	 */
 	private void obtainServerLock() throws ModuleException {
-		// TODO Auto-generated method stub
-		// try to obtain server lock or throw exception
-		// if it's already held by other server process
-		
-		throw new ModuleException("Can't obtain the server lock");
+		// the lock is obtained on platform level via
+		// flock Linux command, so just skip this step
 	}
 
 }

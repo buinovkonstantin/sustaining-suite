@@ -9,5 +9,10 @@ public class Base64Util {
 	public static byte[] decode(String sourceToDecode) {
 		return new byte[] { 0x00, 0x01, 0x02, 0x03 };
 	}
+	
+	public static boolean isBase64Code(byte code) {
+		// TODO
+		return false;
+	}
 
 }

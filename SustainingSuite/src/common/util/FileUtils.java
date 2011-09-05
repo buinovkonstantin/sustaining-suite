@@ -5,6 +5,8 @@ import java.net.URI;
 
 public class FileUtils {
 	
+    public static final long KiB = 1024;
+	
 	private static String sApplicationDirectoryPath;
 	
 	/**

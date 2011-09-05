@@ -1,14 +1,14 @@
 package client.controller;
 
 import java.util.Collection;
-import java.util.TreeSet;
+import java.util.HashSet;
 
 public class ConnectionMonitor implements Runnable {
 
 	private Collection<ConnectionUpdateHandler> handlers;
 	
 	public ConnectionMonitor() {
-		handlers = new TreeSet<ConnectionUpdateHandler>();
+		handlers = new HashSet<ConnectionUpdateHandler>();
 	}
 	
 	public void registerHandler(ConnectionUpdateHandler handler) {
