@@ -5,7 +5,9 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
 import client.view.MainFrame;
 
@@ -32,7 +34,13 @@ public class Base64Dialog extends JDialog {
     JButton encodeButton;
     JButton encodeAndSaveButton;
     
-    File encodedFile = null;
+    // file with encoded source to be decoded
+    // null if source is entered into text area
+    private File encodedFile = null;
+
+    // file with decoded source to be encoded
+    // null if source is entered into text area
+	private File decodedFile = null;
 
     public Base64Dialog() {
         super(MainFrame.link, "Base64", false);
@@ -56,6 +64,16 @@ public class Base64Dialog extends JDialog {
         });
         
         decodeAndSaveButton= new JButton("Decode and save as...");
+        decodeAndSaveButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	JFileChooser fileChooser = new JFileChooser();
+            	int retVal = fileChooser.showOpenDialog(Base64Dialog.this);
+            	if(retVal == JFileChooser.APPROVE_OPTION) {
+            		decodeAndSaveAs(fileChooser.getSelectedFile());
+            	}
+            }
+        });
+        
         decodedOpenButton = new JButton("Open decoded file...");
         decodedArea = new JTextArea(10,20);
         encodeButton = new JButton("Encode");
@@ -82,9 +100,18 @@ public class Base64Dialog extends JDialog {
         setVisible(true);
     }
 
-	private void setEncodedFileAsSource(File selectedFile) {
+	private void resetEncodedSource() {
 		encodedArea.setText(null);
-		
+		encodedFile = null;
+	}
+
+	private void resetDecodedSource() {
+		decodedArea.setText(null);
+		decodedFile = null;
+	}
+
+	private void setEncodedFileAsSource(File selectedFile) {
+		resetEncodedSource();
 		encodedFile = selectedFile;
 		
 		if(encodedFile.length() > MAXIMAL_AUTO_LOADED_FILE_SIZE) {
@@ -127,8 +154,49 @@ public class Base64Dialog extends JDialog {
 		}
  	}
 	
-	private void decodeToTextArea() {
-		// TODO Auto-generated method stub
+	private byte[] decodeData() {
 		
+		try {
+			if((encodedFile == null) || (encodedArea.getText().length() > 0)) {
+				return new BASE64Decoder().decodeBuffer(encodedArea.getText());
+			} else {
+				return new BASE64Decoder().decodeBuffer(new FileInputStream(encodedFile));
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private void decodeToTextArea() {
+		resetDecodedSource();
+
+		byte[] decodedData = decodeData();
+		if(decodedData == null)
+			JOptionPane.showMessageDialog(this, "Entered data is not valid Base64-encoded data", "Invalid source data", JOptionPane.ERROR_MESSAGE);
+		else
+			decodedArea.setText(new String(decodedData));
+	}
+
+	private void decodeAndSaveAs(File selectedFile) {
+		byte[] decodedData = decodeData();
+		if(decodedData == null)
+			JOptionPane.showMessageDialog(this, "Specified source file has not valid Base64-encoded data", "Invalid source data", JOptionPane.ERROR_MESSAGE);
+		else {
+			OutputStream outputStream;
+			try {
+				outputStream = new FileOutputStream(selectedFile);
+				outputStream.write(decodedData);
+			} catch (FileNotFoundException fnfException) {
+				// TODO Auto-generated catch block
+				fnfException.printStackTrace();
+			} catch (IOException ioException) {
+				// TODO Auto-generated catch block
+				ioException.printStackTrace();
+			}
+		}
 	}
 }
