@@ -9,6 +9,7 @@ import javax.swing.JMenuItem;
 
 import client.view.MainFrame;
 import client.view.menu.analyze.Base64Dialog;
+import client.view.menu.analyze.RootBlobIDTranslator;
 import client.view.menu.analyze.TextFrame;
 import client.view.menu.analyze.ZLibCodingDialog;
 
@@ -25,6 +26,15 @@ public class AnalyzeMenu extends JMenu {
             }
         });
         add(base64MenuItem);
+        
+        // RootBlobID translator Menu item
+        JMenuItem rootBlobIDTranslatorMenuItem = new JMenuItem("RootBlobID translation...");
+        rootBlobIDTranslatorMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                new RootBlobIDTranslator();
+            }
+        });
+        add(rootBlobIDTranslatorMenuItem);
         
         // Smart Packet Menu item
         JMenuItem smartpacketMenuItem = new JMenuItem("Smart Packet decode");
