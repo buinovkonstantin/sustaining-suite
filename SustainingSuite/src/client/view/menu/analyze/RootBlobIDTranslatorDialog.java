@@ -2,29 +2,42 @@ package client.view.menu.analyze;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.security.NoSuchAlgorithmException;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import client.view.MainFrame;
 
+import com.filepool.security.digest.Digest;
+import com.filepool.security.digest.DigestFactory;
 import com.jgoodies.forms.builder.PanelBuilder;
 import com.jgoodies.forms.layout.CellConstraints;
 import com.jgoodies.forms.layout.FormLayout;
 
-public class RootBlobIDTranslator extends JDialog {
+public class RootBlobIDTranslatorDialog extends JDialog {
 
 	private JLabel rbidMD5Label;
 	private JTextField rbidMD5TextField;
 	private JButton rbidMD5ToCanonicalButton;
+	
 	private JLabel canonicalMD5Label;
 	private JTextField canonicalMD5TextField;
 	private JButton canonicalMD5toRBAButton;
+	
+	private JButton openSourceBinaryButton;
+	private JTextField sha256DigestTextField;
 
-	public RootBlobIDTranslator() {
+	public RootBlobIDTranslatorDialog() {
         super(MainFrame.link, "RootBlobID translator", false);
         
         rbidMD5Label = new JLabel("MD5 in RootBlobID format");
@@ -45,7 +58,20 @@ public class RootBlobIDTranslator extends JDialog {
             }
         });
         
-        FormLayout formLayout = new FormLayout("150dlu, 10dlu, 100dlu", "15dlu, 20dlu, 10dlu, 15dlu, 20dlu");
+        openSourceBinaryButton = new JButton("Open binary for SHA256");
+        openSourceBinaryButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	JFileChooser fileChooser = new JFileChooser();
+            	int retVal = fileChooser.showOpenDialog(RootBlobIDTranslatorDialog.this);
+            	if(retVal == JFileChooser.APPROVE_OPTION) {
+            		calculateSHA256Digest(fileChooser.getSelectedFile());
+            	}
+
+            }
+        });
+        sha256DigestTextField = new JTextField();
+        
+        FormLayout formLayout = new FormLayout("150dlu, 10dlu, 100dlu", "15dlu, 20dlu, 10dlu, 15dlu, 20dlu, 10dlu, 20dlu");
         PanelBuilder panelBuilder = new PanelBuilder(formLayout);
         CellConstraints c = new CellConstraints();
         panelBuilder.setDefaultDialogBorder();
@@ -55,6 +81,8 @@ public class RootBlobIDTranslator extends JDialog {
         panelBuilder.add(canonicalMD5Label, c.xy(1, 4));
         panelBuilder.add(canonicalMD5TextField, c.xy(1, 5));
         panelBuilder.add(canonicalMD5toRBAButton, c.xy(3, 5));
+        panelBuilder.add(sha256DigestTextField, c.xy(1, 7));
+        panelBuilder.add(openSourceBinaryButton, c.xy(3, 7));
         add(panelBuilder.getPanel());
         pack();
         setLocationRelativeTo(null);
@@ -121,4 +149,52 @@ public class RootBlobIDTranslator extends JDialog {
 		return rbidResult.toString().toUpperCase();
 	}
 
+	private void calculateSHA256Digest(File file) {
+		Digest digest = null;
+		try {
+			digest = DigestFactory.getInstance().createDigest(DigestFactory.DigestType.SHA256);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return;
+		}
+		
+		FileInputStream inputStream;
+		byte[] inputArray = new byte[1000];
+
+		try {
+			inputStream = new FileInputStream(file);
+			boolean stop = false;
+			while(!stop) {
+				int bytesRead = inputStream.read(inputArray);
+				if(bytesRead == -1) {
+					stop = true;
+					continue;
+				} else {
+					if(bytesRead < inputArray.length) {
+						stop = true;
+					}
+
+					digest.update(ByteBuffer.wrap(inputArray, 0, bytesRead));
+				}
+			}
+		} catch (FileNotFoundException fnfException) {
+			// TODO Auto-generated catch block
+			fnfException.printStackTrace();
+			return;
+		}
+		catch (IOException ioException) {
+			// TODO Auto-generated catch block
+			ioException.printStackTrace();
+			return;
+		}
+
+		byte[] result = digest.digest();
+		
+		StringBuilder builder = new StringBuilder(result.length*2);
+		for(byte chunk : result)
+			builder.append(Integer.toHexString(chunk));
+		
+		sha256DigestTextField.setText(builder.toString());
+	}
 }

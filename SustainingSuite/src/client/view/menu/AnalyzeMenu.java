@@ -9,7 +9,7 @@ import javax.swing.JMenuItem;
 
 import client.view.MainFrame;
 import client.view.menu.analyze.Base64Dialog;
-import client.view.menu.analyze.RootBlobIDTranslator;
+import client.view.menu.analyze.RootBlobIDTranslatorDialog;
 import client.view.menu.analyze.TextFrame;
 import client.view.menu.analyze.ZLibCodingDialog;
 
@@ -31,7 +31,7 @@ public class AnalyzeMenu extends JMenu {
         JMenuItem rootBlobIDTranslatorMenuItem = new JMenuItem("RootBlobID translation...");
         rootBlobIDTranslatorMenuItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                new RootBlobIDTranslator();
+                new RootBlobIDTranslatorDialog();
             }
         });
         add(rootBlobIDTranslatorMenuItem);
