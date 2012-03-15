@@ -43,6 +43,7 @@ public class MainFrame extends JFrame implements Module {
 	@Override
 	public void start() throws ModuleException {
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        addWindowListener(new MainFrameWindowListener(controller));
         setMinimumSize(new Dimension(300, 300));
         JMenuBar menuBar = new JMenuBar();
         ClusterMenu clusterMenu = new ClusterMenu(controller);

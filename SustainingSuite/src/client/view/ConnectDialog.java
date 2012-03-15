@@ -55,6 +55,12 @@ public class ConnectDialog extends JDialog {
         });
         
         cancelButton = new JButton("Cancel");
+        cancelButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	ConnectDialog.this.dispose();
+            }
+        });
+        
         addButton = new JButton("Add...");
         addButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

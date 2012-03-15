@@ -91,8 +91,27 @@ public class ParamsImpl implements Params {
 			document.renameNode(root, null, name);
 	}
 	
+
 	/**
 	 * Tries to get String value of parameter with specified @param name
+	 * @param name of retrieved parameter
+	 * @param defaultValue is returned in case if specified parameter 
+	 * 		doesn't exist or failed to be retrieved
+	 * @return String value if it exists in parameters bucket and
+	 * 		successfully read, @param defaultValue otherwise
+	 */
+	@Override
+	public String getString(String name, String defaultValue) {
+		try {
+			return getString(name);
+		} catch (ParamsException pException) {
+			return defaultValue;
+		}
+	}
+	
+	/**
+	 * Tries to get String value of parameter with specified @param name
+	 * @param name of retrieved parameter
 	 * @return String value if it exists in parameters bucket
 	 * @throws ParamsException if there is a corruption in wrapped
 	 * 		XML document
@@ -153,6 +172,32 @@ public class ParamsImpl implements Params {
 		node.setAttribute(PARAMETER_VALUE, value);
 		
 		root.appendChild(node);
+	}
+
+	/**
+	 * Tries to get Params container stored with specified @param name
+	 * @param name of retrieved parameter
+	 * @return Params container if it exists in parameters bucket
+	 * @throws ParamsException if there is a corruption in wrapped
+	 * 		XML document
+	 * @throws ParamsException if there are no Params container 
+	 * 		with specified @param name
+	 */
+	@Override
+	public Params getParams(String name) throws ParamsException {
+		if(name == null)
+			throw new ParamsException("Invalid parameter name ["+name+"]");
+		
+		// enumerate through all tags with endpoint parameters
+		NodeList list = root.getElementsByTagName(name);
+		if(list.getLength() == 1) {
+			return new ParamsImpl(list.item(0));
+		} else if(list.getLength() > 1) {
+			throw new ParamsException(
+					"There are multiple Params containers with name ["+name+"]");
+		}
+		
+		throw new ParamsException("There is no parameter ["+name+"]");
 	}
 
 	/**

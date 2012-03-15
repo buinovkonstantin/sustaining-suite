@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
 
@@ -43,14 +44,17 @@ public class Base64Dialog extends JDialog {
     // file with decoded source to be encoded
     // null if source is entered into text area
 	private File decodedFile = null;
+	
+	private JFileChooser fileChooser;
 
     public Base64Dialog() {
         super(MainFrame.link, "Base64", false);
+        fileChooser = new JFileChooser();
+        
         // decode section
         encodedOpenButton = new JButton("Open encoded file...");
         encodedOpenButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	JFileChooser fileChooser = new JFileChooser();
             	int retVal = fileChooser.showOpenDialog(Base64Dialog.this);
             	if(retVal == JFileChooser.APPROVE_OPTION) {
             		setEncodedFileAsSource(fileChooser.getSelectedFile());
@@ -69,8 +73,7 @@ public class Base64Dialog extends JDialog {
         decodeAndSaveButton= new JButton("Decode and save as...");
         decodeAndSaveButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	JFileChooser fileChooser = new JFileChooser();
-            	int retVal = fileChooser.showOpenDialog(Base64Dialog.this);
+            	int retVal = fileChooser.showSaveDialog(Base64Dialog.this);
             	if(retVal == JFileChooser.APPROVE_OPTION) {
             		decodeAndSaveAs(fileChooser.getSelectedFile());
             	}
@@ -81,7 +84,6 @@ public class Base64Dialog extends JDialog {
         decodedOpenButton = new JButton("Open decoded file...");
         decodedOpenButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	JFileChooser fileChooser = new JFileChooser();
             	int retVal = fileChooser.showOpenDialog(Base64Dialog.this);
             	if(retVal == JFileChooser.APPROVE_OPTION) {
             		setDecodedFileAsSource(fileChooser.getSelectedFile());
@@ -100,8 +102,7 @@ public class Base64Dialog extends JDialog {
         encodeAndSaveButton = new JButton("Encode and save as...");
         encodeAndSaveButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	JFileChooser fileChooser = new JFileChooser();
-            	int retVal = fileChooser.showOpenDialog(Base64Dialog.this);
+            	int retVal = fileChooser.showSaveDialog(Base64Dialog.this);
             	if(retVal == JFileChooser.APPROVE_OPTION) {
             		encodeAndSaveAs(fileChooser.getSelectedFile());
             	}
@@ -153,7 +154,7 @@ public class Base64Dialog extends JDialog {
 				return;
 		}
 		
-		FileInputStream inputStream;
+		InputStream inputStream = null;
 		try {
 			inputStream = new FileInputStream(encodedFile);
 			byte[] inputArray = new byte[100];
@@ -181,24 +182,42 @@ public class Base64Dialog extends JDialog {
 		catch (IOException ioException) {
 			// TODO Auto-generated catch block
 			ioException.printStackTrace();
+		} finally {
+			try {
+				if(inputStream != null)
+					inputStream.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
  	}
 	
 	private byte[] decodeData() {
 		
+		byte[] output = null;
+		InputStream inputStream = null;
 		try {
 			if((encodedFile == null) || (encodedArea.getText().length() > 0)) {
 				return new BASE64Decoder().decodeBuffer(encodedArea.getText());
 			} else {
-				return new BASE64Decoder().decodeBuffer(new FileInputStream(encodedFile));
+				inputStream = new FileInputStream(encodedFile);
+				output = new BASE64Decoder().decodeBuffer(inputStream);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			if(inputStream != null)
+				try {
+					inputStream.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
 
-		// TODO Auto-generated method stub
-		return null;
+		return output;
 	}
 
 	private void decodeToTextArea() {
@@ -250,7 +269,7 @@ public class Base64Dialog extends JDialog {
 					return;
 		}
 		
-		FileInputStream inputStream;
+		InputStream inputStream = null;
 		try {
 			inputStream = new FileInputStream(decodedFile);
 			byte[] inputArray = new byte[100];
@@ -278,6 +297,14 @@ public class Base64Dialog extends JDialog {
 		catch (IOException ioException) {
 			// TODO Auto-generated catch block
 			ioException.printStackTrace();
+		} finally {
+			if(inputStream != null)
+				try {
+					inputStream.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}
 	}
 
@@ -293,10 +320,12 @@ public class Base64Dialog extends JDialog {
 
 	private String encodeData() {
 		
+		String result = null;
+		
 		if((decodedFile == null) || (decodedArea.getText().length() > 0)) {
 			return new BASE64Encoder().encodeBuffer(decodedArea.getText().getBytes());
 		} else {
-			FileInputStream inputStream;
+			InputStream inputStream = null;
 			StringBuilder encodedData = new StringBuilder();
 			BASE64Encoder encoder = new BASE64Encoder();
 			
@@ -322,7 +351,7 @@ public class Base64Dialog extends JDialog {
 					}
 				}
 				
-				return encodedData.toString();
+				result = encodedData.toString();
 			} catch (FileNotFoundException fnfException) {
 				// TODO Auto-generated catch block
 				fnfException.printStackTrace();
@@ -330,12 +359,18 @@ public class Base64Dialog extends JDialog {
 			catch (IOException ioException) {
 				// TODO Auto-generated catch block
 				ioException.printStackTrace();
+			} finally {
+				if(inputStream != null)
+					try {
+						inputStream.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 			}
-
 		}
 
-		// TODO Auto-generated method stub
-		return null;
+		return result;
 	}
 
 	private void encodeAndSaveAs(File selectedFile) {
