@@ -15,6 +15,12 @@ public class ClientContext {
 	private static final String CONNECTION_NAME = "name";
 	private static final String CONNECTION_ADDRESS = "address";
 	private static final String CONNECTION_LOGIN = "login";
+
+	private static final String GUI_SETTINGS_REPOSITORY = "gui.settings";
+	
+	private static final String SETTINGS_TAG = "gui_settings";
+	private static final String GUI_NAME = "gui_name";
+	private static final String GUI_SETTINGS = "gui_settings";
 	
 	//TODO remove this hardcode
 	public final static String[] availableLoggers = {
@@ -128,8 +134,84 @@ public class ClientContext {
 				
 				newRepositoryContent.putParams(CONNECTION_TAG, newRepositoryContentEntry);
 			}
-		}
 
-		RepositoryUtils.persistRepository(CONNECTIONS_REPOSITORY, newRepositoryContent);
+			RepositoryUtils.persistRepository(CONNECTIONS_REPOSITORY, newRepositoryContent);
+		}
+	}
+	
+	private static Map<String, Params> guiSettings = null;
+	
+	public static Map<String, Params> getGuiSettings() {
+		synchronized (GUI_SETTINGS_REPOSITORY) {
+			if(guiSettings == null) {
+				guiSettings = new TreeMap<String, Params>();
+				
+				Params repositoryContent = RepositoryUtils.getRepository(GUI_SETTINGS_REPOSITORY);
+				for(Params settings : repositoryContent.getAllParamsWithName(SETTINGS_TAG)) {
+					try {
+						String guiName = settings.getString(GUI_NAME);
+						Params guiSettings = settings.getParams(GUI_SETTINGS);
+						
+						ClientContext.guiSettings.put(guiName, guiSettings);
+					} catch (ParamsException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+			
+			return guiSettings;
+		}
+	}
+
+	public static boolean updateGuiSettings(Params existingGuiSettings, 
+			Params newGuiSettings) throws ClientContextException {
+		
+		synchronized (GUI_SETTINGS_REPOSITORY) {
+			try {
+				if(existingGuiSettings == null) {
+					// add new gui settings
+					if(newGuiSettings == null || newGuiSettings.getString(GUI_NAME, null) == null)
+						throw new ClientContextException("An attempt to add void connection occured");
+						if(getGuiSettings().containsKey(newGuiSettings.getString(GUI_NAME)))
+							return false;
+		
+					getGuiSettings().put(newGuiSettings.getString(GUI_NAME), newGuiSettings);
+				} else if (newGuiSettings == null) {
+					// remove existing gui settings
+					if(existingGuiSettings == null || existingGuiSettings.getString(GUI_NAME, null) == null)
+						throw new ClientContextException("An attempt to remove void connection occured");
+					
+					if(!getGuiSettings().containsKey(existingGuiSettings.getString(GUI_NAME)))
+						return false;
+					
+					getGuiSettings().remove(existingGuiSettings.getString(GUI_NAME));
+				} else {
+					// update existing gui settings
+					if(existingGuiSettings.getString(GUI_NAME, null) == null || newGuiSettings.getString(GUI_NAME, null) == null)
+						throw new ClientContextException("An attempt to update (by)void connection occured");
+	
+					getGuiSettings().remove(existingGuiSettings.getString(GUI_NAME));
+					getGuiSettings().put(newGuiSettings.getString(GUI_NAME), newGuiSettings);
+				}
+				persistGuiSettings();
+			} catch (ParamsException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return true;
+	}
+
+	private static void persistGuiSettings() {
+		Params newRepositoryContent = new ParamsImpl();
+		
+		synchronized (GUI_SETTINGS_REPOSITORY) {
+			for(Params params : getGuiSettings().values())
+				newRepositoryContent.putParams(SETTINGS_TAG, new ParamsImpl(params));
+			
+			RepositoryUtils.persistRepository(GUI_SETTINGS_REPOSITORY, newRepositoryContent);
+		}
 	}
 }
