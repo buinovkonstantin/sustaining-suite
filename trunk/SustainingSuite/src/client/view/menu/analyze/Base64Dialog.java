@@ -239,6 +239,7 @@ public class Base64Dialog extends JDialog {
 			try {
 				outputStream = new FileOutputStream(selectedFile);
 				outputStream.write(decodedData);
+				outputStream.close();
 			} catch (FileNotFoundException fnfException) {
 				// TODO Auto-generated catch block
 				fnfException.printStackTrace();
@@ -382,6 +383,7 @@ public class Base64Dialog extends JDialog {
 			try {
 				outputStream = new FileOutputStream(selectedFile);
 				outputStream.write(encodedData.getBytes());
+				outputStream.close();
 			} catch (FileNotFoundException fnfException) {
 				// TODO Auto-generated catch block
 				fnfException.printStackTrace();
