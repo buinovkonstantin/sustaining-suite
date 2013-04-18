@@ -52,7 +52,7 @@ public class AnalyzeMenu extends JMenu {
             	JFileChooser fileChooser = new JFileChooser();
             	int retVal = fileChooser.showOpenDialog(MainFrame.link);
             	if(retVal == JFileChooser.APPROVE_OPTION)
-            		new ZLibCodingDialog();
+            		new ZLibCodingDialog(fileChooser.getSelectedFile());
             }
         });
         add(zlibMenuItem);
